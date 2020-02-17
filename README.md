@@ -1,4 +1,21 @@
-# Game - A Ruby CLI Knots and Crosses Game
+# A Ruby CLI Knots and Crosses Game
+
+The goal of this project is to:
+- Develop experience in working in an object oriented language (Ruby)
+- Develop experience implementing the SOLID principles
+- Practice test driven development
+- Create classes as small as possible
+
+## Initial acceptance criteria 
+1. Create a walking skeleton
+2. Create a 3x3 CLI Knots and Crosses game with two human players - 'X' & 'O'
+3. Winning or tie games should be identified gracefully after game ends
+
+## What I've learned
+1. Using ```bundle gem [project_name]```, it is best for the project name to be separated with hyphens (eg. ```this-is-a-project-name```), as this will nest a number of folders within the lib folder
+2. Gemfile is the equivalent of a package.json in Javascript
+
+## What I've struggled with
 
 ## Installation
 
