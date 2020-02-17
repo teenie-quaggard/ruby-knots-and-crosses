@@ -2,11 +2,11 @@ require "game/version"
 
 module Game
   WELCOME_MESSAGE = "Hello sunshine. Welcome to Knots and Crosses."
-  GAME_RULES = "You look familiar, so I'm guessing we've met before. In case"
+  GAME_RULES = "These are the rules of the game"
 
-  class Intro
-    def self.welcome
-      WELCOME_MESSAGE
+  class PrintsMessageToUser
+    def self.prints_message(msg)
+      msg
     end
   end
 

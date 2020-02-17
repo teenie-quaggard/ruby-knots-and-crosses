@@ -11,8 +11,12 @@ RSpec.describe Game do
 
 end
 
-RSpec.describe Game::Intro do
+RSpec.describe Game::PrintsMessageToUser do
   it "prints welcome statement" do
-    expect(Game::Intro.welcome()).to eql("Hello sunshine. Welcome to Knots and Crosses.")
+    WELCOME_MESSAGE = "Hello sunshine. Welcome to Knots and Crosses."
+    GAME_RULES = "These are the rules of the game."
+    expect(Game::PrintsMessageToUser.prints_message(WELCOME_MESSAGE)).to eql("Hello sunshine. Welcome to Knots and Crosses.")
+    expect(Game::PrintsMessageToUser.prints_message(GAME_RULES)).to eql("These are the rules of the game.")
+
   end
 end
