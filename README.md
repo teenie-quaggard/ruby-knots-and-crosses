@@ -1,5 +1,5 @@
-# A Ruby CLI Knots and Crosses Game
-[![Build Status](https://travis-ci.com/teenie-quaggard/ruby-knots-and-crosses.svg?branch=master)](https://travis-ci.com/teenie-quaggard/ruby-knots-and-crosses)
+# A Ruby CLI Noughts and Crosses Game
+[![Build Status](https://travis-ci.com/teenie-quaggard/ruby-noughts-and-crosses.svg?branch=master)](https://travis-ci.com/teenie-quaggard/ruby-noughts-and-crosses)
 
 The goal of this project is to:
 - Develop experience in working in an object oriented language (Ruby)
@@ -9,7 +9,7 @@ The goal of this project is to:
 
 ## Initial acceptance criteria 
 1. Create a walking skeleton
-2. Create a 3x3 CLI Knots and Crosses game with two human players - 'X' & 'O'
+2. Create a 3x3 CLI Noughts and Crosses game with two human players - 'X' & 'O'
 3. Winning or tie games should be identified gracefully after game ends
 
 ## What I've learned
