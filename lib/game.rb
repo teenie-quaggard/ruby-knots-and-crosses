@@ -1,12 +1,13 @@
 require "game/version"
 
-
 module Game
-  class Error < StandardError; end
+  WELCOME_MESSAGE = "Hello sunshine. Welcome to Knots and Crosses."
+  GAME_RULES = "You look familiar, so I'm guessing we've met before. In case"
 
-  class Play
-    def self.hello_world
-      "Welcome to Knots and Crosses"
+  class Intro
+    def self.welcome
+      WELCOME_MESSAGE
     end
   end
+
 end
