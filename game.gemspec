@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/teenie-quaggard/ruby-knots-and-crosses"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
+  spec.add_development_dependency "rspec", "~> 3.0"
 
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 

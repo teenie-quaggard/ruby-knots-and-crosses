@@ -1,6 +1,12 @@
 require "game/version"
 
+
 module Game
   class Error < StandardError; end
-  # Your code goes here...
+
+  class Play
+    def self.hello_world
+      "Welcome to Knots and Crosses"
+    end
+  end
 end
