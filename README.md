@@ -1,4 +1,5 @@
 # A Ruby CLI Knots and Crosses Game
+[![Build Status](https://travis-ci.com/teenie-quaggard/ruby-knots-and-crosses.svg?branch=master)](https://travis-ci.com/teenie-quaggard/ruby-knots-and-crosses)
 
 The goal of this project is to:
 - Develop experience in working in an object oriented language (Ruby)
