@@ -18,9 +18,14 @@ module Game
   end
 
   class Board 
-    attr_accessor :dimension
+    attr_accessor :dimension, :squares
     def initialize(dimension = 3)
       @dimension = dimension
+      @squares = create_grid(@dimension)
+    end
+
+    def create_grid(dimension)
+      Array (1..dimension**2)
     end
   end
 end
