@@ -18,23 +18,42 @@ module Game
   end
 
   class Board 
-    attr_accessor :dimension, :squares
-    def initialize(dimension = 3)
-      @dimension = dimension
-      @squares = create_grid(@dimension)
+    attr_accessor :dimension, :tiles, :tiles_length
+    def initialize(args)
+      # @dimension = dimension
+      # @tile_length = tile_length
+      # @tiles = create_board_array(@dimension)
+      # @row_length = find_row_length(@dimension)
+      @dimension = args[:dimension] || 3
     end
 
-    def create_grid(dimension)
-      Array (1..dimension**2)
-    end
+    # def create_board_array(dimension)
+    #   Array (1..dimension**2)
+    # end
 
-    def prints_board(squares)
-      puts "  
-          1  |  2  |  3  
-        -----------------      
-          4  |  5  |  6  
-        -----------------   
-          7  |  8  |  9  "
-    end
+    # def prints_board(tile)
+    #   puts "  
+    #       1  |  2  |  3  
+    #     -----------------      
+    #       4  |  5  |  6  
+    #     -----------------   
+    #       7  |  8  |  9  "
+    # end
+
+    # def prints_board(tile)
+    #   tile.each { |n| print "  #{n}  |" }
+    # end
+
+    # def row_divider(row_length)
+    #   row_length.times{print '-'}
+    # end
+
+    # def find_row_length(dimension, tile_length)
+    #   (dimension * tile_length) + (dimension - 1)
+    # end
+
+    # def tile_length(number)
+
+    # end
   end
 end
