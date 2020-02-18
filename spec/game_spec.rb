@@ -9,16 +9,15 @@ RSpec.describe Game do
 end
 
 RSpec.describe Game::Display do
-  it "prints statement" do
-    WELCOME_MESSAGE = "Hello sunshine. Welcome to Noughts and Crosses."
-    GAME_RULES = "These are the rules of the game."
-    expect(Game::Display.prints_message(WELCOME_MESSAGE)).to eql("Hello sunshine. Welcome to Noughts and Crosses.")
-    expect(Game::Display.prints_message(GAME_RULES)).to eql("These are the rules of the game.")
+  WELCOME_MESSAGE = "Hello sunshine. Welcome to Noughts and Crosses."
+  GAME_RULES = "These are the rules of the game."
 
-  end
+  specify { expect { Game::Display.prints_message(WELCOME_MESSAGE) }.to output.to_stdout }
+  specify { expect { Game::Display.prints_message(WELCOME_MESSAGE) }.to output("Hello sunshine. Welcome to Noughts and Crosses.\n").to_stdout }
+  specify { expect { Game::Display.prints_message(WELCOME_MESSAGE) }.to output(/Hello sunshine. Welcome to Noughts and Crosses./).to_stdout }
+  specify { expect { }.to_not output.to_stdout }
+  specify { expect { Game::Display.prints_message(WELCOME_MESSAGE) }.to_not output('bar').to_stdout }
+  specify { expect { Game::Display.prints_message(WELCOME_MESSAGE) }.to_not output(/bar/).to_stdout }
 
-  it "prints board" do
-    BOARD = "\n\n1 | 2 | 3\n---------\n4 | 5 | 6\n---------\n7 | 8 | 9\n\n\n"
-    expect(Game::Display.prints_message(BOARD)).to eql("\n\n1 | 2 | 3\n---------\n4 | 5 | 6\n---------\n7 | 8 | 9\n\n\n")
-  end
+
 end

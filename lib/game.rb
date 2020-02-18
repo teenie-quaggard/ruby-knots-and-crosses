@@ -1,4 +1,3 @@
-require "game/version"
 
 module Game
   WELCOME_MESSAGE = "Hello sunshine. Welcome to Noughts and Crosses."
@@ -8,7 +7,6 @@ module Game
   class Display
     def self.prints_message(msg)
       puts msg
-      msg
     end
   end
 
