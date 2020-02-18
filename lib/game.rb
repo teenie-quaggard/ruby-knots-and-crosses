@@ -27,5 +27,14 @@ module Game
     def create_grid(dimension)
       Array (1..dimension**2)
     end
+
+    def prints_board(squares)
+      puts "  
+          1  |  2  |  3  
+        -----------------      
+          4  |  5  |  6  
+        -----------------   
+          7  |  8  |  9  "
+    end
   end
 end

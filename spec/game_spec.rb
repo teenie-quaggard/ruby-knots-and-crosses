@@ -48,5 +48,20 @@ RSpec.describe Game::Board do
     expect(big_board.squares).to eq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
   end
 
+  describe 'prints_board method' do
+    it 'prints a board to the console using the @squares attribute' do
+      squares = [1,2,3,4,5,6,7,8,9]
+      board = Game::Board.new()
+      expect do
+        board.prints_board(squares)
+      end.to output("  
+          1  |  2  |  3  
+        -----------------      
+          4  |  5  |  6  
+        -----------------   
+          7  |  8  |  9  \n").to_stdout
+    end
+  end
+
 
 end
