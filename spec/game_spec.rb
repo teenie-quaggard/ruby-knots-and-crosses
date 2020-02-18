@@ -24,3 +24,12 @@ RSpec.describe Game::Player do
     expect(new_player.name).to_not eq('Bar')
   end
 end
+
+RSpec.describe Game::Board do
+  it 'creates a board defaulting to a dimension of 3x3 but accepting parameters to change the number of squares' do
+    default_board = Game::Board.new()
+    big_board = Game::Board.new(9)
+    expect(default_board.dimension).to eq(3)
+    expect(big_board.dimension).to eq(9)
+  end
+end
