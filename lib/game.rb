@@ -20,16 +20,15 @@ module Game
   class Board 
     attr_accessor :dimension, :tiles, :tiles_length
     def initialize(args)
-      # @dimension = dimension
+      @dimension = args[:dimension] || 3
       # @tile_length = tile_length
       # @tiles = create_board_array(@dimension)
       # @row_length = find_row_length(@dimension)
-      @dimension = args[:dimension] || 3
     end
 
-    # def create_board_array(dimension)
-    #   Array (1..dimension**2)
-    # end
+    def create_array_of_tiles(dimension)
+      Array (1..dimension**2)
+    end
 
     # def prints_board(tile)
     #   puts "  

@@ -26,6 +26,7 @@ RSpec.describe Game::Player do
   end
 end
 
+# TODO: ensure dimension is positive, odd, whole number
 RSpec.describe Game::Board do
   it 'creates a board defaulting to a dimension of 3 but accepting a parameter to change the number of tiles across' do
     default_board = Game::Board.new(:dimension => nil)
@@ -34,12 +35,12 @@ RSpec.describe Game::Board do
     expect(big_board.dimension).to eq(9)
   end
 
-  # it 'create_grid makes an array with a series of numbers which correspond to the dimensions squared' do
-  #   default_board = Game::Board.new()
-  #   big_board = Game::Board.new(4)
-  #   expect(default_board.create_board_array(3)).to eq([1,2,3,4,5,6,7,8,9])
-  #   expect(big_board.create_board_array(4)).to eq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
-  # end
+  it 'create_array_of_tiles makes an array with a series of numbers which correspond to the dimensions squared' do
+    default_board = Game::Board.new(:dimension => nil)
+    big_board = Game::Board.new(:dimension => 4)
+    expect(default_board.create_array_of_tiles(3)).to eq([1,2,3,4,5,6,7,8,9])
+    expect(big_board.create_array_of_tiles(4)).to eq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
+  end
 
   # it '@tiles is equal to an array of numbers corresponding to a grid size' do
   #   default_board = Game::Board.new()
