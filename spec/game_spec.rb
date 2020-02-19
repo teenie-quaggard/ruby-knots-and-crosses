@@ -42,27 +42,39 @@ RSpec.describe Game::Board do
     expect(big_board.create_array_of_tiles(4)).to eq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
   end
 
-  # it '@tiles is equal to an array of numbers corresponding to a grid size' do
-  #   default_board = Game::Board.new()
-  #   big_board = Game::Board.new(4)
-  #   expect(default_board.tiles).to eq([1,2,3,4,5,6,7,8,9])
-  #   expect(big_board.tiles).to eq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
-  # end
+  it '@tiles is equal to an array of numbers corresponding to a grid size' do
+    default_board = Game::Board.new(:dimension => nil)
+    big_board = Game::Board.new(:dimension => 4)
+    expect(default_board.tiles).to eq([1,2,3,4,5,6,7,8,9])
+    expect(big_board.tiles).to eq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
+  end
 
-  # describe 'prints_board method' do
-  #   it 'prints a board to the console using the @tile attribute' do
-  #     tile = [1,2,3,4,5,6,7,8,9]
-  #     board = Game::Board.new()
-  #     expect do
-  #       board.prints_board(tile)
-  #     end.to output("  
-  #         1  |  2  |  3  
-  #       -----------------      
-  #         4  |  5  |  6  
-  #       -----------------   
-  #         7  |  8  |  9  \n").to_stdout
-  #   end
-  # end
+  describe 'prints_board method' do
+    it 'prints a board to the console using the @tile attribute' do
+      tiles = [1,2,3,4,5,6,7,8,9]
+      board = Game::Board.new(:dimension => nil)
+      expect do
+        board.prints_board(tiles)
+      end.to output("  
+          1  |  2  |  3  
+        -----------------      
+          4  |  5  |  6  
+        -----------------   
+          7  |  8  |  9  \n").to_stdout
+    end
+  end
 
+
+  it 'create_empty_tile creates an empty tile' do
+    board = Game::Board.new(:dimension => nil)
+    expect(board.create_empty_tile(4)).to eq("    ")
+  end
+
+  it 'populate_tile creates an tile with a number in the middle of the empty string' do
+    board = Game::Board.new(:dimension => nil)
+    expect(board.populate_tile(1)).to eq("  1  ")
+  end
+
+  
 
 end
