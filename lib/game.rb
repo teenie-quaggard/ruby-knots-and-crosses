@@ -1,9 +1,9 @@
 
 module Game
   WELCOME_MESSAGE = "Hello sunshine. Welcome to Noughts and Crosses! 
-                    Would you like to know the rules of the game? (Y/N)"
+                    Would you like to know the rules of the game? Please type 'Y' or 'N' and click enter."
   GAME_RULES = "These are the rules of the game:"
-  NAME_PROMPT = "Before we get started, what are your names? Please separate them with an ampersand. For example, 'Little Boss & Big Boo'"
+  NAME_PROMPT = "Before we get started, what are your names? Please separate them with an ampersand and then click enter. For example, 'Little Boss & Big Boo'"
   # PLAYER_ONE = "Great, so who is going first? Enter your name. Your mark will be '#{starting_mark}'."
   # TURN_PROMPT = "#{name}, it's your turn!"
   # WINNER = "#{name}, great job! You win!"
@@ -24,9 +24,14 @@ module Game
     end
   end
 
+  class Tile
+
+  end
+
+
   class BoardConstructor 
     attr_accessor :dimension, :tiles, :tiles_length
-    def initialize(args)
+    def initialize(args= {})
       @dimension = args[:dimension] || 3
       @tile_length = args[:tile_length] || 4
       @tiles = create_array_of_tiles(@dimension)
@@ -34,7 +39,7 @@ module Game
     end
 
     def prints_empty_board(tiles)
-      puts create_board_tiles(tiles).reduce(:+)
+      puts create_board_tiles(tiles)
     end
 
     def create_array_of_tiles(dimension)
@@ -49,11 +54,11 @@ module Game
       tiles.map {|tile_number| 
         populated_tile = populate_tile(tile_number)
         format_tiles(populated_tile)
-      }
+      }.reduce(:+)
     end
 
     def populate_tile(tile_number)
-      empty_tile = create_empty_tile(@tile_length)
+      empty_tile = create_empty_tile(@tile_length) 
       tile = empty_tile.insert(empty_tile.length/2, "#{tile_number}")
     end
 
@@ -86,9 +91,5 @@ module Game
     end
   end
 
-  class GamePlay
 
-
-    
-  end
 end
