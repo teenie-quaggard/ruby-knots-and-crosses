@@ -35,11 +35,11 @@ RSpec.describe Game::BoardConstructor do
     expect(big_board.dimension).to eq(9)
   end
 
-  it 'create_array_of_tiles makes an array with a series of numbers which correspond to the dimensions squared' do
+  it 'board_spaces makes an array with a series of numbers which correspond to the dimensions squared' do
     default_board = Game::BoardConstructor.new()
     big_board = Game::BoardConstructor.new(:dimension => 4)
-    expect(default_board.create_array_of_tiles(3)).to eq([1,2,3,4,5,6,7,8,9])
-    expect(big_board.create_array_of_tiles(4)).to eq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
+    expect(default_board.board_spaces(3)).to eq([1,2,3,4,5,6,7,8,9])
+    expect(big_board.board_spaces(4)).to eq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
   end
 
   it '@tiles is equal to an array of numbers corresponding to a grid size' do
@@ -50,44 +50,32 @@ RSpec.describe Game::BoardConstructor do
   end
 
   describe '#prints_empty_board method' do
-    it 'prints a board to the console using the @tile attribute' do
-      tiles = [1,2,3,4,5,6,7,8,9]
-      board = Game::BoardConstructor.new()
+    it 'prints a board to the console' do
+      output = Game::Output.new()
+      board_tiles = [1,2,3,4,5,6,7,8,9]
+      printed_board = output.prints_empty_board(board_tiles)
       expect do
-        board.prints_empty_board(tiles)
+        output.prints_empty_board(board_tiles)
       end.to output("  1  |  2  |  3  \n-----------------\n  4  |  5  |  6  \n-----------------\n  7  |  8  |  9  \n").to_stdout
-      board.prints_empty_board(tiles)
     end
   end
 
-
   it '#create_empty_tile creates an empty tile' do
-    board = Game::BoardConstructor.new()
-    expect(board.create_empty_tile(4)).to eq("    ")
+    tile = Game::Tile.new()
+    expect(tile.create_empty_tile(4)).to eq("    ")
   end
 
   it '#populate_tile creates an tile with a number in the middle of the empty string' do
-    board = Game::BoardConstructor.new()
-    expect(board.populate_tile(1)).to eq("  1  ")
-  end
-
-  it '#row_length method finds out the length of a given board based on dimensions of board and tile length' do
-    board = Game::BoardConstructor.new()
-    dimension = 3
-    tile_length = 4
-    expect(board.row_length(dimension, tile_length)).to eq(17)
-  end
-
-  it '#row_divider method creates a row divider that is the length of the board' do
-    board = Game::BoardConstructor.new()
-    board_length = 17
-    expect(board.row_divider(board_length)).to eq("-----------------")
+    tile = Game::Tile.new()
+    empty_tile = "    "
+    expect(tile.populate_tile(empty_tile, 1)).to eq("  1  ")
   end
 
   it '#create_board_tiles method creates an array of tiles for the board' do
-    board = Game::BoardConstructor.new()
-    tiles = [1,2,3,4,5,6,7,8,9]
-    expect(board.create_board_tiles(tiles)).to eq("  1  |  2  |  3  \n-----------------\n  4  |  5  |  6  \n-----------------\n  7  |  8  |  9  ")
+    board = Game::BoardConstructor.new(:tile => Game::Tile)
+    board_spaces = [1,2,3,4,5,6,7,8,9]
+    expect(board.create_board_tiles(board_spaces).length).to eq(board_spaces.length)
+    expect(board.create_board_tiles(board_spaces)[0].class).to eq(Game::Tile)
   end
 
   it '#format_tiles method takes a tile and appends a divider where necessary' do
@@ -108,3 +96,23 @@ RSpec.describe Game::BoardConstructor do
 end
 
 
+RSpec.describe Game::Formatter do
+  it 'returns an Integer from a string' do
+    formatter = Game::Formatter.new()
+    string = "  1  "
+    expect(formatter.find_int_in_string(string)).to eq(1)
+  end
+
+  it 'creates a row divider the length of the board' do
+    formatter = Game::Formatter.new()
+    expect(formatter.row_divider(15)).to eq("---------------")
+  end
+
+  it '#row_length method finds out the length of a given board based on dimensions of board and tile length' do
+    formatter = Game::Formatter.new()
+    dimension = 3
+    tile_length = 4
+    expect(formatter.row_length(dimension, tile_length)).to eq(17)
+  end
+  
+end
