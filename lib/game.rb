@@ -12,18 +12,6 @@ module Game
 # 
 
 
-
-  class Output
-    attr_accessor :board
-    def initialize(args={})
-      @board = args[:board]
-    end
-
-    def prints_empty_board
-      puts @board
-    end
-  end
-
   class Formatter
     attr_accessor :dimension, :row_length, :tile_content
     def initialize(args= {})

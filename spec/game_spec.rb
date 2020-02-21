@@ -7,33 +7,6 @@ RSpec.describe Game do
   end
 end
 
-# RSpec.describe Game::Output do
-#   WELCOME_MESSAGE = "Hello sunshine. Welcome to Noughts and Crosses."
-#   specify { expect { Game::Output.prints_message(WELCOME_MESSAGE) }.to output.to_stdout }
-#   specify { expect { Game::Output.prints_message(WELCOME_MESSAGE) }.to output("Hello sunshine. Welcome to Noughts and Crosses.\n").to_stdout }
-#   specify { expect { Game::Output.prints_message(WELCOME_MESSAGE) }.to output(/Hello sunshine. Welcome to Noughts and Crosses./).to_stdout }
-#   specify { expect { }.to_not output.to_stdout }
-#   specify { expect { Game::Output.prints_message(WELCOME_MESSAGE) }.to_not output('bar').to_stdout }
-#   specify { expect { Game::Output.prints_message(WELCOME_MESSAGE) }.to_not output(/bar/).to_stdout }
-# end
-
-
-RSpec.describe Game::Output do
-  describe '#prints_empty_board method' do
-    it 'prints a board to the console' do
-    #   output = Game::Output.new(:board => Game::BoardConstructor.create_board(Game::BoardConstructor.create_board_tiles))
-    board = Game::BoardConstructor.new(:single_tile => Tile)
-    board.create_board()
-    output = Game::Output.new(:board => board.board_tiles)
-
-    expect do
-          output.prints_empty_board()
-        end.to output("  1  |  2  |  3  \n-----------------\n  4  |  5  |  6  \n-----------------\n  7  |  8  |  9  \n").to_stdout
-    end
-  end
-end
-
-
 
 # TODO: ensure dimension is positive, odd, whole number
 RSpec.describe Game::BoardConstructor do
