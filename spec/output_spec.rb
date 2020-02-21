@@ -1,9 +1,10 @@
 require 'output'
+require 'board_constructor'
 
 RSpec.describe Output do
     describe '#prints_empty_board method' do
       it 'prints a board to the console' do
-      board = Game::BoardConstructor.new(:single_tile => Tile)
+      board = BoardConstructor.new(:single_tile => Tile)
       board.create_board()
       output = Output.new(:board => board.board_tiles)
   
