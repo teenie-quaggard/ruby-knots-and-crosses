@@ -15,6 +15,7 @@ The goal of this project is to:
 ## What I've learned
 1. Using ```bundle gem [project_name]```, it is best for the project name to be separated with hyphens (eg. ```this-is-a-project-name```), as this will nest a number of folders within the lib folder
 2. Gemfile is the equivalent of a package.json in Javascript
+3. .to output.to_stdout tests for output to console
 
 ## What I've struggled with
 
