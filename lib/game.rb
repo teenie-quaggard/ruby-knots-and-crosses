@@ -100,7 +100,7 @@ module Game
 
   class BoardConstructor 
     attr_accessor :dimension, :spaces, :single_tile, :tile_length, :board_tiles
-    def initialize(args= {})
+    def initialize(args = {})
       @dimension = args[:dimension] || 3
       @spaces = args[:spaces] || [1,2,3,4,5,6,7,8,9]
       @tile_length = args[:tile_length] || 4 
