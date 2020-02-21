@@ -1,13 +1,14 @@
 
 module Game
-  WELCOME_MESSAGE = "Hello sunshine. Welcome to Noughts and Crosses."
+  WELCOME_MESSAGE = "Hello sunshine. Welcome to Noughts and Crosses! 
+                    Would you like to know the rules of the game? Please type 'Y' or 'N' and click enter."
   GAME_RULES = "These are the rules of the game:"
-
-  class Display
-    def self.prints_message(msg)
-      puts msg
-    end
-  end
+  NAME_PROMPT = "Before we get started, what are your names? Please separate them with an ampersand and then click enter. For example, 'Little Boss & Big Boo'"
+  # PLAYER_ONE = "Great, so who is going first? Enter your name. Your mark will be '#{starting_mark}'."
+  # TURN_PROMPT = "#{name}, it's your turn!"
+  # WINNER = "#{name}, great job! You win!"
+  TIE = "Either you're both winners, or you're both losers - you decided."
+  RESTART = "Would you like to play again? (Y/N)"
 
   class Player
     attr_accessor :mark, :name
@@ -17,53 +18,17 @@ module Game
     end
   end
 
-  class BoardConstructor 
-    attr_accessor :dimension, :tiles, :tiles_length
-    def initialize(args)
-      @dimension = args[:dimension] || 3
+  class Tile
+    attr_accessor :tile_length, :tile_content, :space_number
+    def initialize(args = {})
       @tile_length = args[:tile_length] || 4
-      @tiles = create_array_of_tiles(@dimension)
-      @row_length = row_length(@dimension, @tile_length)
+      @space_number = args[:space_number] 
+      @tile_content = args[:tile_content] 
     end
 
-    def prints_board(tiles)
-      puts create_board_tiles(tiles).reduce(:+)
-    end
-
-    def create_array_of_tiles(dimension)
-      array_of_tiles = Array (1..dimension**2)
-    end
-
-    def row_length(dimension, tile_length)
-      (dimension * tile_length) + dimension + (dimension - 1)
-    end
-
-    def create_board_tiles(tiles)
-      tiles.map {|tile_number| 
-        populated_tile = populate_tile(tile_number)
-        format_tiles(populated_tile)
-      }
-    end
-
-    def populate_tile(tile_number)
-      empty_tile = create_empty_tile(@tile_length)
-      tile = empty_tile.insert(empty_tile.length/2, "#{tile_number}")
-    end
-
-    def format_tiles(tile_string)
-      piped_tile = ""
-      tile_number = find_int_in_string(tile_string)
-      if (tile_number % @dimension == 0 && tile_number != @tiles.length)
-        return piped_tile << tile_string << "\n" << row_divider(@row_length) << "\n"
-      elsif (tile_number == @tiles.length)
-        piped_tile << tile_string
-      else
-        return piped_tile << tile_string << "|" 
-      end
-    end
-
-    def find_int_in_string(string) 
-      string.scan(/\d+/).map(&:to_i)[0]
+    def tile
+      empty_tile = create_empty_tile(@tile_length) 
+      populate_tile(empty_tile, @space_number)
     end
 
     def create_empty_tile(tile_length)
@@ -72,11 +37,93 @@ module Game
       return tile
     end
 
-    def row_divider(row_length)
-      divider = ""
-      row_length.times{divider << "-"}
-      return divider
+    def populate_tile(empty_tile, space_number)
+      @tile_content = empty_tile.insert(empty_tile.length/2, "#{space_number}")
     end
 
   end
+
+  class Output
+    attr_accessor :board
+    def initialize(args={})
+      @board = args[:board]
+    end
+
+    def prints_empty_board
+      puts @board
+    end
+  end
+
+  class Formatter
+    attr_accessor :dimension, :row_length, :tile_content
+    def initialize(args= {})
+      @dimension = args[:dimension] || 3
+      @tile_length = args[:tile_length] || 4 
+      @tile_content = args[:tile_content] || ""
+    end
+
+    def format_tiles()
+      tile_number = find_int_in_string(@tile_content)
+      if (last_tile(tile_number))
+        @tile_content
+      elsif (last_column_tile(tile_number))
+        @tile_content << "\n" << row_divider() << "\n"
+      else
+        @tile_content << "|"
+      end
+    end
+
+    def last_tile(tile_number)
+      true if tile_number == @dimension**2
+    end
+
+    def last_column_tile(tile_number)
+      true if tile_number % @dimension == 0 && tile_number != @dimension**2
+    end
+
+    def find_int_in_string(string) 
+      string.scan(/\d+/).map(&:to_i)[0]
+    end
+
+    def row_divider
+      divider = ""
+      length = row_length(@dimension, @tile_length)
+      length.times{divider << "-"}
+      return divider
+    end
+
+    def row_length(dimension, tile_length)
+      (dimension * tile_length) + dimension + (dimension - 1)
+    end
+
+  end
+
+  class BoardConstructor 
+    attr_accessor :dimension, :spaces, :single_tile, :tile_length, :board_tiles
+    def initialize(args= {})
+      @dimension = args[:dimension] || 3
+      @spaces = args[:spaces] || [1,2,3,4,5,6,7,8,9]
+      @tile_length = args[:tile_length] || 4 
+      @single_tile = args[:single_tile]
+      @board_tiles = args[:board_tiles] || ""
+    end
+
+    def board_spaces(dimension)
+      numbered_spaces = Array (1..dimension**2)
+    end
+
+    def create_board_tiles(spaces, formatter)
+      tiles = spaces.map {|space_number| 
+        single_tile = @single_tile.new(:space_number => space_number, :tile_length => @tile_length)
+        formatted_tile = formatter.new(:dimension => @dimension, :tile_length => @tile_length, :tile_content => single_tile.tile).format_tiles()
+      }
+    end
+
+    def create_board
+      tiles = create_board_tiles(@spaces, Game::Formatter)
+      @board_tiles = tiles.reduce(:+)
+    end
+
+  end
+
 end
