@@ -10,6 +10,7 @@ class Play
 
     def start 
         @output.hello
+        
     end
 
 end
