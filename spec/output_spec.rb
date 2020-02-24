@@ -1,4 +1,5 @@
 require 'output'
+require 'board'
 
 RSpec.describe Output do
     describe "#hello" do
@@ -11,10 +12,9 @@ RSpec.describe Output do
     end
 
     describe "#board" do
-        it "print the current board" do
-            output = Output.new()
-
-            puts output.board
+        it "prints the current board" do
+            board = Board.new()
+            output = Output.new(:board => board)
             expect do 
                 output.board
             end.to output(" 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 \n").to_stdout
