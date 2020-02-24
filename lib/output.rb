@@ -9,6 +9,12 @@ class Output
         gets.chomp()
     end
 
+    def intro
+        hello
+        board
+        prompt_turn
+    end
+
     def hello
         puts "Howdy stranger. Welcome to Noughts and Crosses."
     end

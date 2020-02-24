@@ -37,5 +37,13 @@ RSpec.describe Play do
         end
     end
 
+    it '#winner recognizes when there is a winner' do
+        board = Board.new(:board_spaces => ["X","X","X","O",5,"O",7,8,"O"])
+        output = Output.new(:board => board)
+        game = Play.new(:board => board, :output => output)
+        mark = "X"
+        expect(game.winner(mark, board.board_spaces)).to eq(true)
+    end
+
 
 end
