@@ -2,14 +2,14 @@ require 'output'
 require 'board_constructor'
 
 RSpec.describe Output do
-    describe '#prints_empty_board method' do
+    describe '#prints_board method' do
       it 'prints a board to the console' do
       board = BoardConstructor.new(:single_tile => Tile)
       board.create_board()
       output = Output.new(:board => board.board_tiles)
   
       expect do
-            output.prints_empty_board(output.board)
+            output.prints_board(output.board)
           end.to output("  1  |  2  |  3  \n-----------------\n  4  |  5  |  6  \n-----------------\n  7  |  8  |  9  \n").to_stdout
       end
     end
