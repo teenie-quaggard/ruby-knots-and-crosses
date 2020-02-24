@@ -28,6 +28,10 @@ class Play
         WINNING_INDICES.include? indices
     end
 
+    def tie(board_spaces)
+        board_spaces.all? {|item| item.instance_of?(String)}
+    end
+
 
     
 
