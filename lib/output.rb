@@ -5,8 +5,16 @@ class Output
         @board = args[:board]
     end
 
+    def get_input
+        gets.chomp()
+    end
+
     def hello
         puts "Howdy stranger. Welcome to Noughts and Crosses."
+    end
+
+    def prompt_turn
+        puts "Choose and number from 1-9:"
     end
 
     def board

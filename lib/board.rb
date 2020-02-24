@@ -6,6 +6,11 @@ class Board
         @board_spaces = args[:board_spaces] || BOARD_RESET
     end
 
+    def make_move(number)
+        index = number - 1
+        @board_spaces[index] = "X"
+    end
+
     def new_board(reset_array)
         @board_spaces = reset_array
     end

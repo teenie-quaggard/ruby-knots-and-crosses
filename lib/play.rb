@@ -10,7 +10,9 @@ class Play
 
     def start 
         @output.hello
+        @output.prompt_turn
         @output.board
+        # @output.get_input
     end
 
 end
