@@ -10,4 +10,15 @@ RSpec.describe Player do
       expect(new_player.mark).to_not eq('O')
       expect(new_player.name).to_not eq('')
     end
+    # describe '#get_name method' do
+    #   it 'sets player name' do
+    #   player = Player.new()
+  
+    #   expect do
+    #     player.get_name()
+    #       end.to output.to_stdout
+    #   end
+    # end
+
+    
   end

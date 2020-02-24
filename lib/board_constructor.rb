@@ -1,4 +1,5 @@
-require 'formatter'
+require_relative 'formatter'
+require_relative 'tile'
 
 class BoardConstructor 
     attr_accessor :dimension, :spaces, :single_tile, :tile_length, :board_tiles
@@ -6,7 +7,7 @@ class BoardConstructor
       @dimension = args[:dimension] || 3
       @spaces = args[:spaces] || [1,2,3,4,5,6,7,8,9]
       @tile_length = args[:tile_length] || 4 
-      @single_tile = args[:single_tile]
+      @single_tile = args[:single_tile] || Tile
       @board_tiles = args[:board_tiles] || ""
     end
 
