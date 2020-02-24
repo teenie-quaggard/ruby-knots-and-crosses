@@ -4,7 +4,7 @@ class Output
         @board = args[:board]
     end
 
-    def prints_empty_board
-        puts @board
+    def prints_empty_board(board)
+        puts board
     end
 end

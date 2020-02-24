@@ -18,11 +18,11 @@ class Formatter
     end
 
     def last_tile(tile_number)
-      true if tile_number == @dimension**2
+      tile_number == @dimension**2
     end
 
     def last_column_tile(tile_number)
-      true if tile_number % @dimension == 0 && tile_number != @dimension**2
+      tile_number % @dimension == 0 && tile_number != @dimension**2
     end
 
     def find_int_in_string(string) 

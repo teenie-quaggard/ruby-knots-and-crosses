@@ -9,7 +9,7 @@ RSpec.describe Output do
       output = Output.new(:board => board.board_tiles)
   
       expect do
-            output.prints_empty_board()
+            output.prints_empty_board(output.board)
           end.to output("  1  |  2  |  3  \n-----------------\n  4  |  5  |  6  \n-----------------\n  7  |  8  |  9  \n").to_stdout
       end
     end

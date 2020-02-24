@@ -13,6 +13,25 @@ RSpec.describe Formatter do
       tile_length = 4
       expect(formatter.row_length(dimension, tile_length)).to eq(17)
     end
+
+    it '#last_tile checks for last tile in the board' do
+        formatter = Formatter.new()
+        tile3 = 3
+        tile9 = 9
+        expect(formatter.last_tile(tile3)).to eq(false)
+        expect(formatter.last_tile(tile9)).to eq(true)
+
+    end
+
+    it '#last_column_tile checks for tiles in the last column, but not the last tile on the board' do
+        formatter = Formatter.new(:dimension => 3)
+        tile3 = 3
+        tile6 =  6
+        tile9 = 9
+        expect(formatter.last_column_tile(tile3)).to eq(true)
+        expect(formatter.last_column_tile(tile6)).to eq(true)
+        expect(formatter.last_column_tile(tile9)).to eq(false)
+    end
   
     it '#format_tiles method takes a tile and appends a divider where necessary' do
       formatter1 = Formatter.new(:tile_content => "  1  ")
