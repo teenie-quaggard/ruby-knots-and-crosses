@@ -12,8 +12,6 @@ class Output
         puts "Howdy stranger. Welcome to Noughts and Crosses."
     end
 
-    
-
     def prompt_turn
         puts "\nChoose a number between 1-9:"
     end

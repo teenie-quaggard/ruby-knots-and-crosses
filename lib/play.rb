@@ -20,6 +20,7 @@ class Play
 
     def start 
         @output.intro
+        tick(@board, @player)
     end
 
     def make_move(board, mark, user_input)
@@ -37,15 +38,17 @@ class Play
         tiles.all? {|tile| tile.instance_of?(String)}
     end
 
-    def tick(board, mark)
-        if (winner(board, mark))
-            puts "#{mark} wins!"
+    def tick(board, player)
+        if (winner(board, player))
+            puts "#{player} wins!"
         elsif (tie(board))
             puts "It's a tie."
         else
             @output.prompt_turn
+            @output.print_board(board)
             user_input = gets.chomp()
-            make_move(board, mark, user_input)
+            make_move(board, player.mark, user_input)
+            @output.print_board(board)
         end
     end
     

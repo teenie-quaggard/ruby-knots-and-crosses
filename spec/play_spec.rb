@@ -9,7 +9,8 @@ RSpec.describe Play do
         it 'prints intro to game' do
             board = Board.new
             output = Output.new
-            game = Play.new(:board => board, :output => output)
+            player = Player.new(:mark => 'X')
+            game = Play.new(:board => board, :output => output, :player => player)
             
             expect do
                 game.start
