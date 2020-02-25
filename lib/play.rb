@@ -38,6 +38,10 @@ class Play
         tiles.all? {|tile| tile.instance_of?(String)}
     end
 
+    def game_over(winner_method, tie_method)
+        winner_method || tie_method
+    end
+
     def tick(board, player)
         if (winner(board, player))
             puts "#{player} wins!"

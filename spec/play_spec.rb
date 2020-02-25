@@ -68,6 +68,15 @@ RSpec.describe Play do
         expect(game.tie(game.board)).to eq(false)
     end
 
+    it '#game_over returns true if there is a winner or a tie' do
+        tie_board = Board.new(:tiles => ["X","O","O","O","X","X","X","X","O"])
+        output = Output.new
+        game = Play.new(:board => tie_board, :output => output)
+        no_winner = game.winner(tie_board, "X")
+        tie = game.tie(tie_board)
+        expect(game.game_over(no_winner, tie)).to eq(true)
+    end
+
     it '#make_move places marker on tile' do
         board = Board.new(:tiles => [1,2,3,4,5,6,7,8,9])
         output = Output.new
