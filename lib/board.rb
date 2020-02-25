@@ -7,7 +7,8 @@ class Board
     end
 
     def make_move(mark, user_input)
-        index = user_input - 1
+        digit = user_input.to_i
+        index = digit - 1
         @tiles[index] = mark
     end
 

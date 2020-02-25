@@ -11,10 +11,10 @@ class Play
         [2,4,6]
     ]
 
-    attr_reader :board, :player1, :output
+    attr_reader :board, :player, :output
     def initialize(args)
         @board = args[:board]
-        @player1 = args[:player1]
+        @player = args[:player]
         @output = args[:output]
     end
 
@@ -26,22 +26,26 @@ class Play
         board.make_move(mark, user_input)
     end
 
-    def winner(tiles, mark)
+    def winner(board, mark)
+        tiles = board.tiles
         indices = tiles.each_index.select{|i| tiles[i] == mark}
         WINNING_INDICES.include? indices
     end
 
-    def tie(tiles)
+    def tie(board)
+        tiles = board.tiles
         tiles.all? {|tile| tile.instance_of?(String)}
     end
 
-    def game_loop(board)
+    def tick(board, mark)
         if (winner(board, mark))
             puts "#{mark} wins!"
         elsif (tie(board))
             puts "It's a tie."
         else
-            make_move(board, mark)
+            @output.prompt_turn
+            user_input = gets.chomp()
+            make_move(board, mark, user_input)
         end
     end
     
