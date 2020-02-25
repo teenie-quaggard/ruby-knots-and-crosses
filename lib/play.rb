@@ -23,7 +23,7 @@ class Play
     end
 
     def make_move(board, mark, user_input)
-        @board.make_move(mark, user_input)
+        board.make_move(mark, user_input)
     end
 
     def winner(tiles, mark)

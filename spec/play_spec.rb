@@ -73,7 +73,7 @@ RSpec.describe Play do
         player1 = Player.new(:mark => 'X')
         game = Play.new(:board => board, :output => output, :player1 => player1)
         user_input = 3
-        game.make_move(game.board.tiles, player1.mark, user_input)
+        game.make_move(game.board, player1.mark, user_input)
         expect(game.board.tiles).to eq([1,2,'X',4,5,6,7,8,9])
     end
 
