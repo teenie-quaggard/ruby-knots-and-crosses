@@ -12,14 +12,14 @@ class Play
 
     attr_reader :board, :player, :output
     def initialize(args)
-        @board = args[:board]
+        @board = args[:board] 
         @player = args[:player]
         @output = args[:output]
     end
 
     def start 
         @output.intro
-        tick(@board, @player)
+        # tick(@board, @player)
     end
 
     def make_move(board, mark, user_input)
@@ -53,13 +53,13 @@ class Play
     end
 
 
-    def tick(board, player)
-        while (game_over(winner(board, player), tie(board)) == false)
-            puts "Here's me board #{board.tiles}"
-            game_play()
-        end
-        puts "HURRAY"
-    end
+    # def tick(board, player)
+    #     while (game_over(winner(board, player), tie(board)) == false)
+    #         puts "Here's me board #{board.tiles}"
+    #         game_play()
+    #     end
+    #     "WINNER"
+    # end
     
 
 end
