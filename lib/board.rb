@@ -16,6 +16,4 @@ class Board
         @tiles = reset_array
     end
 
-
-
 end
