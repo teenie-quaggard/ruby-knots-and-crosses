@@ -11,8 +11,8 @@ class Output
 
     def intro
         hello
-        board
         prompt_turn
+        board
     end
 
     def hello
@@ -20,7 +20,7 @@ class Output
     end
 
     def prompt_turn
-        puts "Choose and number from 1-9:"
+        puts "\nChoose and number from 1-9:"
     end
 
     def board

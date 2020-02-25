@@ -6,9 +6,9 @@ class Board
         @tiles = args[:tiles] || BOARD_RESET
     end
 
-    def make_move(number)
-        index = number - 1
-        @tiles[index] = "X"
+    def make_move(mark, user_input)
+        index = user_input - 1
+        @tiles[index] = mark
     end
 
     def new_board(reset_array)

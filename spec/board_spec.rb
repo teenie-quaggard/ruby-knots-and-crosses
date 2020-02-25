@@ -10,7 +10,7 @@ RSpec.describe Board do
 
     it '#make_move replaces number in the tile array with a marker' do
         board = Board.new()
-        board.make_move(1)
+        board.make_move("X", 1)
         expect(board.tiles).to eq(["X",2,3,4,5,6,7,8,9])
     end
 

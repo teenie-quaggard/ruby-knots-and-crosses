@@ -1,6 +1,7 @@
 require 'play'
 require 'board'
 require 'output'
+require 'player'
 
 RSpec.describe Play do
 
@@ -41,7 +42,7 @@ RSpec.describe Play do
         output = Output.new(:board => board)
         game = Play.new(:board => board, :output => output)
         mark = "X"
-        expect(game.winner(mark, board.tiles)).to eq(true)
+        expect(game.winner(game.board.tiles, mark)).to eq(true)
     end
 
     it '#winner returns false when there is not a winner' do
@@ -49,21 +50,31 @@ RSpec.describe Play do
         output = Output.new(:board => board)
         game = Play.new(:board => board, :output => output)
         mark = "O"
-        expect(game.winner(mark, board.tiles)).to eq(false)
+        expect(game.winner(game.board.tiles, mark)).to eq(false)
     end
 
     it '#tie returns true when there is a tie' do
         board = Board.new(:tiles => ["X","O","O","O","X","X","X","X","O"])
         output = Output.new(:board => board)
         game = Play.new(:board => board, :output => output)
-        expect(game.tie(board.tiles)).to eq(true)
+        expect(game.tie(game.board.tiles)).to eq(true)
     end
 
     it '#tie returns false when the game is not over' do
         board = Board.new(:tiles => ["X","O","O","O","X","X","X","X",9])
         output = Output.new(:board => board)
         game = Play.new(:board => board, :output => output)
-        expect(game.tie(board.tiles)).to eq(false)
+        expect(game.tie(game.board.tiles)).to eq(false)
+    end
+
+    it '#make_move places marker on tile' do
+        board = Board.new(:tiles => [1,2,3,4,5,6,7,8,9])
+        output = Output.new(:board => board)
+        player1 = Player.new(:mark => 'X')
+        game = Play.new(:board => board, :output => output, :player1 => player1)
+        user_input = 3
+        game.make_move(game.board.tiles, player1.mark, user_input)
+        expect(game.board.tiles).to eq([1,2,'X',4,5,6,7,8,9])
     end
 
 
