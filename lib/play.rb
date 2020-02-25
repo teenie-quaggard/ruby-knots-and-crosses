@@ -23,13 +23,13 @@ class Play
         @output.intro
     end
 
-    def winner(mark, board_spaces)
-        indices = board_spaces.each_index.select{|i| board_spaces[i] == mark}
+    def winner(mark, tiles)
+        indices = tiles.each_index.select{|i| tiles[i] == mark}
         WINNING_INDICES.include? indices
     end
 
-    def tie(board_spaces)
-        board_spaces.all? {|item| item.instance_of?(String)}
+    def tie(tiles)
+        tiles.all? {|tile| tile.instance_of?(String)}
     end
 
 
