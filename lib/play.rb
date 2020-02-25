@@ -1,5 +1,4 @@
 class Play
-
     WINNING_INDICES = [
         [0,1,2],
         [3,4,5],
@@ -16,12 +15,11 @@ class Play
         @board = args[:board]
         @player = args[:player]
         @output = args[:output]
-        @playing = false
     end
 
     def start 
         @output.intro
-        # tick(@board, @player)
+        tick(@board, @player)
     end
 
     def make_move(board, mark, user_input)
@@ -55,24 +53,13 @@ class Play
     end
 
 
-    # def tick(board, player)
-    #     # if (winner(board, player))
-    #     #     puts "#{player} wins!"
-    #     # elsif (tie(board))
-    #     #     puts "It's a tie."
-    #     # else
-    #     #     @output.prompt_turn
-    #     #     @output.print_board(board)
-    #     #     user_input = gets.chomp()
-    #     #     make_move(board, player.mark, user_input)
-    #     #     @output.print_board(board)
-    #     # end
-    #     while (game_over(winner(board, player), tie(board)) == false)
-    #         game_play()
-    #     end
-    #     # @playing = false
-    #     puts 'WINNER'
-    # end
+    def tick(board, player)
+        while (game_over(winner(board, player), tie(board)) == false)
+            puts "Here's me board #{board.tiles}"
+            game_play()
+        end
+        puts "HURRAY"
+    end
     
 
 end

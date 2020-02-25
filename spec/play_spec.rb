@@ -106,14 +106,15 @@ RSpec.describe Play do
         expect(game.board.tiles).to eq([1,2,'X',4,5,6,7,8,9])
     end
 
-    # it '#tick checks for end of game. If not, prompts another turn.' do
-    #     board = Board.new(:tiles => ["X","X","X","O","O",6,7,8,9])
-    #     output = Output.new
-    #     player = Player.new(:mark => 'X')
-    #     game = Play.new(:board => board, :output => output, :player => player)
-    #     game.tick(game.board, game.player)
+    it '#tick checks for end of game. If not, prompts another turn.' do
+        board = Board.new(:tiles => ["X","X",3,"O","O",6,7,8,9])
+        output = Output.new
+        player = Player.new(:mark => 'X')
+        game = Play.new(:board => board, :output => output, :player => player)
+        
+        expect(game.tick(game.board, game.player)).to eq("WINNER")
 
-    # end
+    end
 
 
 end
