@@ -2,8 +2,8 @@ class Output
 
     attr_reader :console
 
-    def initialize(console=Kernel)
-        @console = console
+    def initialize(args)
+        @console = args[:console] || Kernel
     end
 
     def get_input
