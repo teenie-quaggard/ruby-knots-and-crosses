@@ -2,12 +2,12 @@ require 'output'
 require 'board'
 
 RSpec.describe Output do
-    describe "#hello" do
+    describe "#intro" do
         it "prints intro using test double" do
             console = StringIO.new
             output = Output.new(:console => console)
-            output.hello
-            expect(console.string).to eq("Howdy stranger. Welcome to Noughts and Crosses.\n")
+            output.intro
+            expect(console.string).to eq("\nHowdy stranger. Welcome to Noughts and Crosses.\n")
         end
     end
 
@@ -25,16 +25,7 @@ RSpec.describe Output do
             console = StringIO.new
             output = Output.new(:console => console)
             output.prompt_turn
-            expect(console.string).to eq("\nChoose a number between 1-9:\n")
-        end
-    end
-
-    describe "#winner" do
-        it "prints intro using test double" do
-            console = StringIO.new
-            output = Output.new(:console => console)
-            output.prompt_turn
-            expect(console.string).to eq("\nChoose a number between 1-9:\n")
+            expect(console.string).to eq("\nChoose a number between 1-9: ")
         end
     end
 
@@ -44,7 +35,7 @@ RSpec.describe Output do
             board = Board.new(:tiles => [1,2,3,4,5,6,7,8,9])
             output = Output.new(:console => console)
             output.print_board(board)
-            expect(console.string).to eq(" 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 \n")
+            expect(console.string).to eq("\n\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 \n")
         end
     end
 

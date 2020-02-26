@@ -20,11 +20,8 @@ class Play
     def start 
         @output.intro
         tick
+        @output.outro(@player.mark)
     end
-
-    # def make_move(board, mark, user_input)
-    #     board.make_move(mark, user_input)
-    # end
 
     def winner(board, mark)
         tiles = board.tiles
@@ -47,8 +44,8 @@ class Play
     end
 
     def game_play
-        @output.prompt_turn
         @output.print_board(@board)
+        @output.prompt_turn
         user_input = @output.get_input()
         @player.make_move(@board, @player.mark, user_input)
     end
