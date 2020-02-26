@@ -20,16 +20,18 @@ class Play
     def start 
         @output.intro
         tick
-        @output.outro(@player.mark)
+        # @output.outro(@player.mark)
     end
 
     def winner(board, mark)
         tiles = board.tiles
-        indices = tiles.each_index.select{|i| tiles[i] == mark}
-        "current indices in winner #{indices}"
-        WINNING_INDICES.include? indices
+        indices = tiles.each_index.select{|i| tiles[i] == mark}.sort()
+        WINNING_INDICES.each {|winning_set| 
+           return true if (winning_set - indices).empty?
+        }
+        false
     end
-
+   
     def tie(board)
         tiles = board.tiles
         tiles.all? {|tile| tile.instance_of?(String)}
