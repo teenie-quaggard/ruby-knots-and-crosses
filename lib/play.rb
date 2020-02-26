@@ -19,7 +19,7 @@ class Play
 
     def start 
         @output.intro
-        # tick(@board, @player)
+        tick(@board, @player)
     end
 
     def make_move(board, mark, user_input)
@@ -29,6 +29,7 @@ class Play
     def winner(board, mark)
         tiles = board.tiles
         indices = tiles.each_index.select{|i| tiles[i] == mark}
+        "current indices in winner #{indices}"
         WINNING_INDICES.include? indices
     end
 
@@ -37,29 +38,30 @@ class Play
         tiles.all? {|tile| tile.instance_of?(String)}
     end
 
-    def game_over(winner_method, tie_method)
-        if (winner_method || tie_method)
-            true
+    def game_over
+        if (winner(@board, @player.mark) || tie(@board))
+            true 
         else
             false
         end
     end
 
-    def game_play()
+    def game_play
         @output.prompt_turn
         @output.print_board(board)
-        user_input = gets.chomp()
+        user_input = @output.get_input()
         make_move(board, player.mark, user_input)
     end
 
 
-    # def tick(board, player)
-    #     while (game_over(winner(board, player), tie(board)) == false)
-    #         puts "Here's me board #{board.tiles}"
-    #         game_play()
-    #     end
-    #     "WINNER"
-    # end
+    def tick(board, player)
+        puts @output.console.string
+        while (game_over() == false) do
+            puts "Here's me tick board #{board.tiles}"
+            game_play()
+        end
+        "WINNER"
+    end
     
 
 end
