@@ -10,17 +10,17 @@ class Play
         [2,4,6]
     ]
 
-    attr_reader :board, :player1, :player2, :output
+    attr_reader :board, :output, :players, :current_player
     def initialize(args)
         @board = args[:board] 
-        @player1 = args[:player1]
-        @player2 = args[:player2]
+        @players = args[:players]
+        @current_player = args[:current_player]
         @output = args[:output]
     end
 
-    def start(player) 
+    def start
         @output.intro
-        tick(player)
+        tick
         # @output.outro(@player.mark)
     end
 
@@ -38,19 +38,19 @@ class Play
         tiles.all? {|tile| tile.instance_of?(String)}
     end
 
-    def game_over(player)
-        (winner(@board, player.mark) || tie(@board))? true : false
+    def game_over
+        (winner(@board, @current_player.mark) || tie(@board))? true : false
     end
 
-    def game_play(player)
+    def game_play
         @output.print_board(@board)
         @output.prompt_turn
         user_input = @output.get_input()
-        player.make_move(@board, player.mark, user_input)
+        @current_player.make_move(@board, @current_player.mark, user_input)
     end
 
-    def tick(player)
-        game_play(player) while (game_over(player) == false)
+    def tick
+        game_play() while (game_over() == false)
         @output.print_board(@board)
     end
     

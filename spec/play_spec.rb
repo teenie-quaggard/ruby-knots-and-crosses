@@ -54,25 +54,37 @@ RSpec.describe Play do
     it '#game_over returns true if there is a tie' do
         tie_board = Board.new(:tiles => ["X","O","O","O","X","X","X","X","O"])
         output = Output.new
-        player = Player.new(:mark => 'X')
-        game = Play.new(:board => tie_board, :output => output)
-        expect(game.game_over(player)).to eq(true)
+        players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
+        current_player = players[0]
+        game = Play.new(:board => tie_board, :output => output, :players => players, :current_player => current_player)
+        expect(game.game_over()).to eq(true)
     end
 
     it '#game_over returns true if there is a winner' do
         winning_board = Board.new(:tiles => ["X","X","X","O",5,"O",7,8,"O"])
         output = Output.new
-        player = Player.new(:mark => 'X')
-        game = Play.new(:board => winning_board, :output => output)
-        expect(game.game_over(player)).to eq(true)
+        players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
+        current_player = players[0]
+        game = Play.new(:board => winning_board, :output => output, :players => players, :current_player => current_player)
+        expect(game.game_over()).to eq(true)
     end
 
     it '#game_over returns false if there not a tie or a winner' do
         board = Board.new(:tiles => [1,2,3,4,5,6,7,8,9])
         output = Output.new
-        player1 = Player.new(:mark => 'X')
-        game = Play.new(:board => board, :output => output)
-        expect(game.game_over(player1)).to eq(false)
+        players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
+        current_player = players[0]
+        game = Play.new(:board => board, :output => output, :players => players, :current_player => current_player)
+        expect(game.game_over()).to eq(false)
+    end
+
+    it '#toggle_player changes the current player instance variable' do
+        board = Board.new(:tiles => [1,2,3,4,5,6,7,8,9])
+        output = Output.new
+        players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
+        current_player = players[0]
+        game = Play.new(:board => board, :output => output, :players => players, :current_player => current_player)
+        expect(game.current_player.mark).to eq(players[0].mark)
     end
 
 

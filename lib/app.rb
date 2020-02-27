@@ -7,6 +7,7 @@ board = Board.new()
 output = Output.new()
 player1 = Player.new(:mark => 'X')
 player2 = Player.new(:mark => 'O')
+players = [player1, player2]
 
-play = Play.new(:output => output, :board => board, :player1 => player1, :player2 => player2)
-play.start(player1)
+play = Play.new(:output => output, :board => board, :players => players, :current_player => players[0])
+play.start()
