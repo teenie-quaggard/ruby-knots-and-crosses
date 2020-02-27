@@ -10,10 +10,11 @@ class Play
         [2,4,6]
     ]
 
-    attr_reader :board, :player, :output
+    attr_reader :board, :player1, :player2, :output
     def initialize(args)
         @board = args[:board] 
-        @player = args[:player]
+        @player1 = args[:player1]
+        @player2 = args[:player2]
         @output = args[:output]
     end
 
@@ -37,8 +38,8 @@ class Play
         tiles.all? {|tile| tile.instance_of?(String)}
     end
 
-    def game_over
-        (winner(@board, @player.mark) || tie(@board))? true : false
+    def game_over(player)
+        (winner(@board, player.mark) || tie(@board))? true : false
     end
 
     def game_play
