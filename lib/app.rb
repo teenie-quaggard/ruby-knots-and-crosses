@@ -9,4 +9,4 @@ player1 = Player.new(:mark => 'X')
 player2 = Player.new(:mark => 'O')
 
 play = Play.new(:output => output, :board => board, :player1 => player1, :player2 => player2)
-play.start()
+play.start(player1)

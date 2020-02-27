@@ -18,9 +18,9 @@ class Play
         @output = args[:output]
     end
 
-    def start 
+    def start(player) 
         @output.intro
-        tick
+        tick(player)
         # @output.outro(@player.mark)
     end
 
@@ -42,16 +42,15 @@ class Play
         (winner(@board, player.mark) || tie(@board))? true : false
     end
 
-    def game_play
+    def game_play(player)
         @output.print_board(@board)
         @output.prompt_turn
         user_input = @output.get_input()
-        @player.make_move(@board, @player.mark, user_input)
+        player.make_move(@board, player.mark, user_input)
     end
 
-
-    def tick
-        game_play() while (game_over() == false)
+    def tick(player)
+        game_play(player) while (game_over(player) == false)
         @output.print_board(@board)
     end
     
