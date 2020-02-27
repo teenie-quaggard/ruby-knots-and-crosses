@@ -47,6 +47,7 @@ class Play
         @output.prompt_turn
         user_input = @output.get_input()
         @current_player.make_move(@board, @current_player.mark, user_input)
+        toggle_player
     end
 
     def tick
