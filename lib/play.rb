@@ -39,7 +39,17 @@ class Play
     end
 
     def game_over
-        (winner(@board, @current_player.mark) || tie(@board))? true : false
+        # (winner(@board, @current_player.mark) || tie(@board))? true :  false 
+        if (winner(@board, @current_player.mark) == true )
+            puts 'Winner'
+            true
+        elsif (tie(@board) == true)
+            puts 'Tie'
+            true
+        else
+            puts 'Keep going'
+            false
+        end
     end
 
     def game_play
