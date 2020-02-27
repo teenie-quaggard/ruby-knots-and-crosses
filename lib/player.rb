@@ -1,7 +1,12 @@
 class Player
-    attr_accessor :mark, :name
-    def initialize(mark, name)
-      @mark = mark
-      @name = name
+
+    attr_reader :mark
+    def initialize(args = {})
+        @mark = args[:mark]
     end
-  end
+
+    def make_move(board, mark, user_input)
+        board.make_move(mark, user_input)
+    end
+
+end

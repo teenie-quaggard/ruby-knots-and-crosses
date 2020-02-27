@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "game"
+# require "game"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
