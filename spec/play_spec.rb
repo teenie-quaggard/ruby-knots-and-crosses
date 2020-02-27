@@ -84,7 +84,8 @@ RSpec.describe Play do
         players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
         current_player = players[0]
         game = Play.new(:board => board, :output => output, :players => players, :current_player => current_player)
-        expect(game.current_player.mark).to eq(players[0].mark)
+        game.toggle_player
+        expect(game.current_player.mark).to eq(players[1].mark)
     end
 
 

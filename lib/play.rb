@@ -54,5 +54,12 @@ class Play
         @output.print_board(@board)
     end
     
+    def toggle_player
+        if (@current_player == @players[0])
+            @current_player = @players[1]
+        else
+            @current_player = @players[0]
+        end
+    end 
 
 end
