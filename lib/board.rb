@@ -12,8 +12,8 @@ class Board
         @tiles[index] = mark
     end
 
-    def new_board(reset_array)
-        @tiles = reset_array
+    def new_board(board)
+        @tiles = board
     end
 
 end
