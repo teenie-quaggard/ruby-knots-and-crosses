@@ -42,10 +42,10 @@ class Play
         # (winner(@board, @current_player.mark) || tie(@board))? true :  false 
         if (winner(@board, @current_player.mark) == true )
             puts 'Winner'
-            true
+            return true
         elsif (tie(@board) == true)
             puts 'Tie'
-            true
+            return true
         else
             puts 'Keep going'
             false
@@ -57,7 +57,7 @@ class Play
         @output.prompt_turn
         user_input = @output.get_input()
         @current_player.make_move(@board, @current_player.mark, user_input)
-        toggle_player
+        game_over ? @output.print_board(@board) : toggle_player
     end
 
     def tick
