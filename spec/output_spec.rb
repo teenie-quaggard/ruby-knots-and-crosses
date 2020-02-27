@@ -25,7 +25,7 @@ RSpec.describe Output do
             console = StringIO.new
             output = Output.new(:console => console)
             output.prompt_turn
-            expect(console.string).to eq("\nChoose a number between 1-9: ")
+            expect(console.string).to eq("\n 👽Choose a number between 1-9: ")
         end
     end
 
@@ -35,7 +35,7 @@ RSpec.describe Output do
             board = Board.new(:tiles => [1,2,3,4,5,6,7,8,9])
             output = Output.new(:console => console)
             output.print_board(board)
-            expect(console.string).to eq("\n\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 \n")
+            expect(console.string).to eq("\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 \n")
         end
     end
 

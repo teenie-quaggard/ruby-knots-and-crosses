@@ -21,7 +21,7 @@ class Play
     def start
         @output.intro
         tick
-        # @output.outro(@player.mark)
+        @output.outro
     end
 
     def winner(board, mark)
@@ -39,15 +39,13 @@ class Play
     end
 
     def game_over
-        # (winner(@board, @current_player.mark) || tie(@board))? true :  false 
         if (winner(@board, @current_player.mark) == true )
-            puts 'Winner'
+            @output.winner(@current_player.mark)
             return true
         elsif (tie(@board) == true)
-            puts 'Tie'
+            @output.tie
             return true
         else
-            puts 'Keep going'
             false
         end
     end
@@ -61,16 +59,11 @@ class Play
     end
 
     def tick
-        game_play() while (game_over() == false)
-        @output.print_board(@board)
+        game_play while (game_over == false)
     end
     
     def toggle_player
-        if (@current_player == @players[0])
-            @current_player = @players[1]
-        else
-            @current_player = @players[0]
-        end
+        @current_player == @players[0] ? @current_player = @players[1] : @current_player = @players[0]
     end 
 
 end
