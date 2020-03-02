@@ -5,19 +5,6 @@ require 'player'
 
 RSpec.describe Play do
 
-    # describe "#start" do
-    #     it 'prints intro to game' do
-    #         board = Board.new
-    #         console = Console.new
-    #         player = Player.new(:mark => 'X')
-    #         game = Play.new(:board => board, :console => console, :player => player)
-            
-    #         expect do
-    #             game.start
-    #           end.to console(/Howdy stranger. Welcome to Noughts and Crosses.\n/).to_stdout
-    #     end
-    # end
-
     it '#winner returns true when there is a winner' do
         board = Board.new(:tiles => {0=>"X", 1=>"X", 2=>"X", 3=>4, 4=>5, 5=>6, 6=>7, 7=>8, 8=>9})
         console = Console.new
@@ -88,32 +75,16 @@ RSpec.describe Play do
         expect(game.current_player.mark).to eq(players[1].mark)
     end
 
-    # it '#turn' do
-    #     board = Board.new()
-    #     input = StringIO.new "2\n"
-    #     console = Console.new(:input => input)
-    #     players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
-    #     game = Play.new(:board => board, :console => console, :players => players, :current_player => players[0])
-    #     game.turn
-    #     expect(board).to eq({0=>1, 1=>"X", 2=>3, 3=>4, 4=>5, 5=>6, 6=>7, 7=>8, 8=>9})
-    #     # // expect that board has been updated with appropriate marker
-    # end
+    it '#turn expects that board tile has been updated with appropriate marker' do
+        board = Board.new()
+        input = StringIO.new "2\n"
+        console = Console.new(:input => input)
+        players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
+        game = Play.new(:board => board, :console => console, :players => players, :current_player => players[0])
+        game.turn
+        stringified_input = input.string.to_i
+        expect(board.tile_content(stringified_input)).to eq("X")
+    end
 
-
-
-    # it '#tick checks for end of game. If not, prompts another turn.' do
-    #     board = Board.new(:tiles => ["X","X",3,"O","O",6,7,8,"O"])
-    #     console = StringIO.new
-    #     allow($stdin).to receive(:gets).and_return("3")
-    #     $stdout = StringIO.new
-    #     console = Console.new(:console => console)
-
-    #     player = Player.new(:mark => 'X')
-    #     game = Play.new(:board => board, :console => console, :player => player)
-    #     game.tick(game.board, game.player)
-    #     console = $stdout.string 
-    #     expect(console).to include("WINNER")
-
-    # end
 
 end

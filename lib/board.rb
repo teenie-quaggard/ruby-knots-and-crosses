@@ -1,5 +1,4 @@
 class Board
-    # BOARD_ARR_RESET = [1,2,3,4,5,6,7,8,9]
     BOARD_RESET = {
         0 => 1,
         1 => 2,
@@ -23,7 +22,8 @@ class Board
         @tiles[index] = mark
     end
 
-    def tile_content(index)
+    def tile_content(input)
+        index = input-1
         @tiles[index]
     end
 
