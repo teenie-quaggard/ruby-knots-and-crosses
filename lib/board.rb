@@ -1,14 +1,14 @@
 class Board
     BOARD_RESET = {
-        0 => 1,
-        1 => 2,
-        2 => 3,
-        3 => 4,
-        4 => 5,
-        5 => 6,
-        6 => 7,
-        7 => 8,
-        8 => 9
+        0 => nil,
+        1 => nil,
+        2 => nil,
+        3 => nil,
+        4 => nil,
+        5 => nil,
+        6 => nil,
+        7 => nil,
+        8 => nil
     }
 
     attr_reader :tiles
