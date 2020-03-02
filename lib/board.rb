@@ -1,5 +1,4 @@
 class Board
-    # BOARD_ARR_RESET = [1,2,3,4,5,6,7,8,9]
     BOARD_RESET = {
         0 => 1,
         1 => 2,
@@ -17,14 +16,19 @@ class Board
         @tiles = args[:tiles] || BOARD_RESET
     end
 
-    def make_move(mark, user_input)
-        digit = user_input.to_i
-        index = digit - 1
+    def make_move(mark, input)
+        index = find_index(input)
         @tiles[index] = mark
     end
 
-    def new_board(board)
-        @tiles = board
+    def tile_content(input)
+        index = find_index(input)
+        @tiles[index]
+    end
+
+    def find_index(input)
+        digit = input.to_i
+        index = digit - 1
     end
 
 end
