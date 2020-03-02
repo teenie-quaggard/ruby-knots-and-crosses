@@ -1,5 +1,16 @@
 class Board
-    BOARD_RESET = [1,2,3,4,5,6,7,8,9]
+    # BOARD_ARR_RESET = [1,2,3,4,5,6,7,8,9]
+    BOARD_RESET = {
+        0 => 1,
+        1 => 2,
+        2 => 3,
+        3 => 4,
+        4 => 5,
+        5 => 6,
+        6 => 7,
+        7 => 8,
+        8 => 9
+    }
 
     attr_reader :tiles
     def initialize(args = {})
