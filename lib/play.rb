@@ -26,7 +26,7 @@ class Play
 
     def winner(board, mark)
         tiles = board.tiles
-        indices = tiles.each_index.select{|i| tiles[i] == mark}.sort()
+        indices = tiles.each_key.select{|i| tiles[i] == mark}.sort()
         WINNING_INDICES.each {|winning_set| 
            return true if (winning_set - indices).empty?
         }
@@ -35,7 +35,7 @@ class Play
    
     def tie(board)
         tiles = board.tiles
-        tiles.all? {|tile| tile.instance_of?(String)}
+        tiles.all? {|key, value| value.instance_of?(String)}
     end
 
     def game_over

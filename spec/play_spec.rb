@@ -19,7 +19,7 @@ RSpec.describe Play do
     # end
 
     it '#winner returns true when there is a winner' do
-        board = Board.new(:tiles => ["X","X","X","O",5,"O",7,8,"O"])
+        board = Board.new(:tiles => {0=>"X", 1=>"X", 2=>"X", 3=>4, 4=>5, 5=>6, 6=>7, 7=>8, 8=>9})
         output = Output.new
         player = Player.new(:mark => 'X')
         game = Play.new(:board => board, :output => output, :player => player)
@@ -28,7 +28,7 @@ RSpec.describe Play do
     end
 
     it '#winner returns false when there is not a winner' do
-        board = Board.new(:tiles => ["X","X","X","O",5,"O",7,8,"O"])
+        board = Board.new(:tiles => {0=>"X", 1=>"X", 2=>"X", 3=>4, 4=>5, 5=>6, 6=>7, 7=>8, 8=>9})
         output = Output.new
         game = Play.new(:board => board, :output => output)
         player = Player.new(:mark => 'O')
@@ -36,7 +36,7 @@ RSpec.describe Play do
     end
 
     it '#tie returns true when there is a tie' do
-        board = Board.new(:tiles => ["X","O","O","O","X","X","X","X","O"])
+        board = Board.new(:tiles => {0=>"X", 1=>"O", 2=>"O", 3=>"O", 4=>"X", 5=>"X", 6=>"X", 7=>"X", 8=>"O"})
         output = Output.new
         player = Player.new(:mark => 'X')
         game = Play.new(:board => board, :output => output, :player => player)
@@ -44,7 +44,7 @@ RSpec.describe Play do
     end
 
     it '#tie returns false when the game is not over' do
-        board = Board.new(:tiles => ["X","O","O","O","X","X","X","X",9])
+        board = Board.new(:tiles =>  {0=>"X", 1=>"O", 2=>"O", 3=>"O", 4=>"X", 5=>"X", 6=>"X", 7=>"X", 8=>9})
         output = Output.new
         player = Player.new(:mark => 'X')
         game = Play.new(:board => board, :output => output, :player => player)
@@ -52,7 +52,7 @@ RSpec.describe Play do
     end
 
     it '#game_over returns true if there is a tie' do
-        tie_board = Board.new(:tiles => ["X","O","O","O","X","X","X","X","O"])
+        tie_board = Board.new(:tiles => {0=>"X", 1=>"O", 2=>"O", 3=>"O", 4=>"X", 5=>"X", 6=>"X", 7=>"X", 8=>"O"})
         output = Output.new
         players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
         current_player = players[0]
@@ -61,7 +61,7 @@ RSpec.describe Play do
     end
 
     it '#game_over returns true if there is a winner' do
-        winning_board = Board.new(:tiles => ["X","X","X","O",5,"O",7,8,"O"])
+        winning_board = Board.new(:tiles => {0=>"X", 1=>"X", 2=>"X", 3=>4, 4=>5, 5=>6, 6=>7, 7=>8, 8=>9})
         output = Output.new
         players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
         current_player = players[0]
@@ -70,7 +70,7 @@ RSpec.describe Play do
     end
 
     it '#game_over returns false if there not a tie or a winner' do
-        board = Board.new(:tiles => [1,2,3,4,5,6,7,8,9])
+        board = Board.new(:tiles => {0=>"X", 1=>"X", 2=>3, 3=>4, 4=>5, 5=>6, 6=>7, 7=>8, 8=>9})
         output = Output.new
         players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
         current_player = players[0]
