@@ -16,15 +16,19 @@ class Board
         @tiles = args[:tiles] || BOARD_RESET
     end
 
-    def make_move(mark, user_input)
-        digit = user_input.to_i
-        index = digit - 1
+    def make_move(mark, input)
+        index = find_index(input)
         @tiles[index] = mark
     end
 
     def tile_content(input)
-        index = input-1
+        index = find_index(input)
         @tiles[index]
+    end
+
+    def find_index(input)
+        digit = input.to_i
+        index = digit - 1
     end
 
 end

@@ -82,8 +82,7 @@ RSpec.describe Play do
         players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
         game = Play.new(:board => board, :console => console, :players => players, :current_player => players[0])
         game.turn
-        stringified_input = input.string.to_i
-        expect(board.tile_content(stringified_input)).to eq("X")
+        expect(board.tile_content(input.string)).to eq("X")
     end
 
 
