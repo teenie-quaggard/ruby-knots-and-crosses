@@ -24,11 +24,9 @@ RSpec.describe Board do
         expect(board.tiles).to eq({0=>"X", 1=>2, 2=>3, 3=>4, 4=>5, 5=>6, 6=>7, 7=>8, 8=>9})
     end
 
-    it '#new_board creates a board empty of markers' do
-        board = Board.new(:tiles => ["X",2,"O",4,5,6,7,8,9])
-        BOARD_RESET = [1,2,3,4,5,6,7,8,9]
-        board.new_board(BOARD_RESET)
-        expect(board.tiles).to eq([1,2,3,4,5,6,7,8,9])
+    it '#tile_content returns data from a tile' do
+        board = Board.new()
+        expect(board.tile_content(2)).to eq (3)
     end
 
 

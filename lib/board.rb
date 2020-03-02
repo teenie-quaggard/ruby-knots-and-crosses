@@ -23,8 +23,8 @@ class Board
         @tiles[index] = mark
     end
 
-    def new_board(board)
-        @tiles = board
+    def tile_content(index)
+        @tiles[index]
     end
 
 end
