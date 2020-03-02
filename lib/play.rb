@@ -35,7 +35,7 @@ class Play
    
     def tie(board)
         tiles = board.tiles
-        tiles.all? {|tile| tile.instance_of?(String)}
+        tiles.all? {|key, value| value.instance_of?(String)}
     end
 
     def game_over

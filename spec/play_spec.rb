@@ -18,7 +18,7 @@ RSpec.describe Play do
     #     end
     # end
 
-    it '#winner hash returns true when there is a winner' do
+    it '#winner returns true when there is a winner' do
         board = Board.new(:tiles => {0=>"X", 1=>"X", 2=>"X", 3=>4, 4=>5, 5=>6, 6=>7, 7=>8, 8=>9})
         output = Output.new
         player = Player.new(:mark => 'X')
@@ -27,7 +27,7 @@ RSpec.describe Play do
         expect(game.winner(game.board, player.mark)).to eq(true)
     end
 
-    it '#winner hash returns false when there is not a winner' do
+    it '#winner returns false when there is not a winner' do
         board = Board.new(:tiles => {0=>"X", 1=>"X", 2=>"X", 3=>4, 4=>5, 5=>6, 6=>7, 7=>8, 8=>9})
         output = Output.new
         game = Play.new(:board => board, :output => output)
@@ -44,7 +44,7 @@ RSpec.describe Play do
     end
 
     it '#tie returns false when the game is not over' do
-        board = Board.new(:tiles => ["X","O","O","O","X","X","X","X",9])
+        board = Board.new(:tiles =>  {0=>"X", 1=>"O", 2=>"O", 3=>"O", 4=>"X", 5=>"X", 6=>"X", 7=>"X", 8=>9})
         output = Output.new
         player = Player.new(:mark => 'X')
         game = Play.new(:board => board, :output => output, :player => player)
