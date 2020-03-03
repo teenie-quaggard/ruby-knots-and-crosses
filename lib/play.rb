@@ -24,6 +24,10 @@ class Play
         @console.outro
     end
 
+    def tick
+        turn while (game_over == false)
+    end
+
     def winner(board, mark)
         tiles = board.tiles
         indices = tiles.each_key.select{|i| tiles[i] == mark}.sort()
@@ -50,17 +54,29 @@ class Play
         end
     end
 
-    def turn
+    def user_move 
         @console.print_board(@board)
         @console.prompt_turn
         user_input = @console.get_input()
-        @current_player.make_move(@board, @current_player.mark, user_input)
+        # puts "its #{@current_player.mark} turn"
+        move = @current_player.make_move(@board, @current_player.mark, user_input)
+    end
+
+    def turn
+        move = user_move
+        validate(move)
         game_over ? @console.print_board(@board) : toggle_player
     end
 
-    def tick
-        turn while (game_over == false)
-    end
+    def validate(move)
+        if move == "Spot taken"
+            @console.spot_taken
+            turn
+        elsif move == "Bad input"
+            @console.bad_input
+            turn
+        end
+    end 
     
     def toggle_player
         @current_player == @players[0] ? @current_player = @players[1] : @current_player = @players[0]

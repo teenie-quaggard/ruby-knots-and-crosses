@@ -29,5 +29,19 @@ RSpec.describe Board do
         expect(board.tile_content(2)).to eq (nil)
     end
 
+    it '#spot_taken? returns true if someone has already submitted that move' do
+        board = Board.new()
+        board.make_move("X", "1")
+        expect(board.spot_taken?(1)).to eq (true)
+        expect(board.spot_taken?(2)).to eq (false)
+    end
+
+    it '#bad_input? returns true if user inputs an integer that is within the range of the board' do
+        board = Board.new()
+        expect(board.bad_input?("adadf")).to eq (true)
+        expect(board.bad_input?("2000")).to eq (true)
+        expect(board.bad_input?("3")).to eq (false)
+    end
+
 
 end
