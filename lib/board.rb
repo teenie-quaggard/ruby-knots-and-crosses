@@ -16,12 +16,16 @@ class Board
 
     def make_move(mark, input)
         index = find_index(input)
+        @tiles[index] = mark
+    end
+
+    def validate(input)
         if spot_taken?(input)
             "Spot taken"
         elsif bad_input?(input)
             "Bad input"
         else
-            @tiles[index] = mark
+            "Good input"
         end
     end
 
