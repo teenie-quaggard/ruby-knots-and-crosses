@@ -24,18 +24,37 @@ class Play
         @console.outro
     end
 
-    def winner(board, mark)
-        tiles = board.tiles
-        indices = tiles.each_key.select{|i| tiles[i] == mark}.sort()
-        WINNING_INDICES.each {|winning_set| 
-           return true if (winning_set - indices).empty?
-        }
-        false
+    def tick
+        turn while (game_over == false)
     end
-   
-    def tie(board)
-        tiles = board.tiles
-        tiles.all? {|key, value| value.instance_of?(String)}
+
+    def turn
+        input = get_input
+        if valid_move?(input)
+            @current_player.make_move(@board, @current_player.mark, input)
+            game_over ? @console.print_board(@board) : toggle_player
+        else
+            turn
+        end
+    end
+
+    def get_input 
+        @console.print_board(@board)
+        @console.prompt_turn
+        user_input = @console.get_input
+    end
+
+    def valid_move?(input)
+        board_validation = @board.validate(input)
+        if board_validation == "Spot taken"
+            @console.spot_taken
+            false
+        elsif board_validation == "Bad input"
+            @console.bad_input
+            false
+        else    
+            true
+        end
     end
 
     def game_over
@@ -50,18 +69,20 @@ class Play
         end
     end
 
-    def turn
-        @console.print_board(@board)
-        @console.prompt_turn
-        user_input = @console.get_input()
-        @current_player.make_move(@board, @current_player.mark, user_input)
-        game_over ? @console.print_board(@board) : toggle_player
+    def winner(board, mark)
+        tiles = board.tiles
+        indices = tiles.each_key.select{|i| tiles[i] == mark}.sort()
+        WINNING_INDICES.each {|winning_set| 
+           return true if (winning_set - indices).empty?
+        }
+        false
+    end
+   
+    def tie(board)
+        tiles = board.tiles
+        tiles.all? {|key, value| value.instance_of?(String)}
     end
 
-    def tick
-        turn while (game_over == false)
-    end
-    
     def toggle_player
         @current_player == @players[0] ? @current_player = @players[1] : @current_player = @players[0]
     end 
