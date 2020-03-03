@@ -6,7 +6,6 @@ class Player
     end
 
     def make_move(board, mark, user_input)
-        puts "It's my turn: #{mark}"
         board.make_move(mark, user_input)
     end
 

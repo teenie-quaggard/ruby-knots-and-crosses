@@ -66,7 +66,7 @@ RSpec.describe Play do
     end
 
     it '#toggle_player changes the current player instance variable' do
-        board = Board.new()
+        board = Board.new
         output = StringIO.new
         input = StringIO.new
         console = Console.new(:output => output, :input => input)
@@ -86,6 +86,17 @@ RSpec.describe Play do
         game = Play.new(:board => board, :console => console, :players => players, :current_player => players[0])
         game.turn
         expect(board.tile_content(input.string)).to eq("X")
+    end
+
+    it "#valid_move? returns true if user input is valid" do
+        board = Board.new(:tiles => {0=>"X", 1=>"X", 2=>nil, 3=>nil, 4=>nil, 5=>nil, 6=>nil, 7=>nil, 8=>nil})
+        console = Console.new(:input => StringIO.new, :output => StringIO.new)
+        players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
+        game = Play.new(:board => board, :console => console, :players => players, :current_player => players[0])
+        expect(game.valid_move?('1')).to eq (false)
+        expect(game.valid_move?('8')).to eq (true)
+        expect(game.valid_move?('Happy days!')).to eq (false)
+        expect(game.valid_move?('1999')).to eq (false)
     end
 
 

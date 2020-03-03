@@ -29,33 +29,33 @@ class Play
     end
 
     def turn
-        move = user_moves
-        validation = validate_user_move(move)
-        if validation == true
-            @current_player.make_move(@board, @current_player.mark, move)
+        input = get_input
+        if valid_move?(input)
+            @current_player.make_move(@board, @current_player.mark, input)
             game_over ? @console.print_board(@board) : toggle_player
         else
             turn
         end
     end
 
-    def user_moves 
+    def get_input 
         @console.print_board(@board)
         @console.prompt_turn
         user_input = @console.get_input
     end
 
-    def validate_user_move(input)
+    def valid_move?(input)
         board_validation = @board.validate(input)
         if board_validation == "Spot taken"
             @console.spot_taken
+            false
         elsif board_validation == "Bad input"
             @console.bad_input
+            false
         else    
             true
         end
     end
-
 
     def game_over
         if (winner(@board, @current_player.mark) == true )

@@ -2,7 +2,7 @@ require 'board'
 
 RSpec.describe Board do
     it 'can be initialized with an array of spaces' do
-        board = Board.new()
+        board = Board.new
         expect(board.tiles).to eq({
             0 => nil,
             1 => nil,
