@@ -58,14 +58,15 @@ class Play
         @console.print_board(@board)
         @console.prompt_turn
         user_input = @console.get_input()
-        # puts "its #{@current_player.mark} turn"
         move = @current_player.make_move(@board, @current_player.mark, user_input)
     end
 
     def turn
         move = user_move
-        validate(move)
-        game_over ? @console.print_board(@board) : toggle_player
+        validation = validate(user_move)
+        if (validation == true)
+            game_over ? @console.print_board(@board) : toggle_player
+        end
     end
 
     def validate(move)
@@ -75,6 +76,8 @@ class Play
         elsif move == "Bad input"
             @console.bad_input
             turn
+        else
+            true
         end
     end 
     

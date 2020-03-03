@@ -32,7 +32,6 @@ class Board
 
     def bad_input?(input)
         int_input = convert_to_int(input)
-        # puts int_input
         int_input == 0 || int_input > @tiles.length
     end
 

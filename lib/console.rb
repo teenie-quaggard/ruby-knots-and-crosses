@@ -26,7 +26,7 @@ class Console
     end
 
     def prompt_turn
-        @output.print "\n 👽Choose a number between 1-9: "
+        @output.print "\n 👆 👆 👆  Choose a number between 1-9: "
     end
 
     def winner(player)
@@ -34,7 +34,7 @@ class Console
     end
 
     def spot_taken
-        @output.puts "Sorry, choose another spot! This one has be already played."
+        @output.puts "Sorry, choose another spot! This spot is taken!"
     end
 
     def bad_input

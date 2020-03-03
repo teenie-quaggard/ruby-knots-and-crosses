@@ -20,12 +20,30 @@ RSpec.describe Console do
         end
     end
 
+    describe "#spot_taken" do
+        it "prints intro using test double" do
+            output = StringIO.new
+            console = Console.new(:output => output, :input => StringIO.new)
+            console.spot_taken
+            expect(output.string).to eq("Sorry, choose another spot! This spot is taken!\n")
+        end
+    end
+
+    describe "#bad_input" do
+        it "prints intro using test double" do
+            output = StringIO.new
+            console = Console.new(:output => output, :input => StringIO.new)
+            console.bad_input
+            expect(output.string).to eq("Something was wrong with your input! Make sure it is an integer within the board limits.\n")
+        end
+    end
+
     describe "#prompt_turn" do
         it "prints intro using test double" do
             output = StringIO.new
             console = Console.new(:output => output, :input => StringIO.new)
             console.prompt_turn
-            expect(output.string).to eq("\n 👽Choose a number between 1-9: ")
+            expect(output.string).to eq("\n 👆 👆 👆  Choose a number between 1-9: ")
         end
     end
 
