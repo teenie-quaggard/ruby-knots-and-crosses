@@ -12,8 +12,12 @@ class GameConstructor
   def go(board=Board.new)
     game = new_human_game(board)
     @console.intro
-    game.tick while game.end == false
+    play(game)
     restart?
+  end
+
+  def play(game)
+    game.tick while game.end == false
   end
 
   def restart?

@@ -7,7 +7,7 @@ require 'player'
 
 RSpec.describe GameConstructor do
 
-  it "#human_game creates a new instance of the Play class" do
+  it "#new_human_game creates a new instance of the Play class" do
     console = Console.new(:output => StringIO.new, :input => StringIO.new)
     constructor = GameConstructor.new(:console => console)
     board = Board.new
@@ -18,7 +18,7 @@ RSpec.describe GameConstructor do
     output = StringIO.new
     input = StringIO.new "1\n2\n5\n3\n9\nN\n"
     console = Console.new(:output => output, :input => input)
-    constructor = GameConstructor.new(console)
+    constructor = GameConstructor.new(:console => console)
     board = Board.new
     constructor.go(board)
     expect(output.string).to include("Alright, see you next time! 👋")
