@@ -56,14 +56,11 @@ class Play
         if (winner(@board, @current_player.mark) == true )
             @console.winner(@current_player.mark)
             @end = true
-            return true
         elsif (tie(@board) == true)
             @console.tie
             @end = true
-            return true
         else
             @end = false
-            false
         end
     end
 
@@ -84,5 +81,9 @@ class Play
     def toggle_player
         @current_player == @players[0] ? @current_player = @players[1] : @current_player = @players[0]
     end 
+
+    def toggle_end
+        @end = !@end
+    end
 
 end
