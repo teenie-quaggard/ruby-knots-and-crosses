@@ -19,12 +19,6 @@ class Play
         @end = args[:end] || false
     end
 
-    def start
-        @console.intro
-        tick
-        @console.outro
-    end
-
     def tick
         turn while (game_over == false)
     end

@@ -18,11 +18,10 @@ class Console
     def outro
         @output.print "Would you like to play again? (Y/N): "
         input = get_input().capitalize
-        if (input == "N")
-            @output.puts "Alright, see you next time! 👋"
-        else
-            @output.puts "Sorry, I'm just not that advanced. 👋"
-        end
+    end
+
+    def bye
+        @output.puts "Alright, see you next time! 👋"
     end
 
     def prompt_turn

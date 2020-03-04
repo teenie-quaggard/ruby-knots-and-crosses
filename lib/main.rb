@@ -1,4 +1,6 @@
 require_relative 'game_constructor'
+require_relative 'console'
 
-program = GameConstructor.new
+console = Console.new
+program = GameConstructor.new(:console => console)
 program.go
