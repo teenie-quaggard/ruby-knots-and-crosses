@@ -4,41 +4,29 @@ require_relative 'player'
 
 class GameConstructor 
   
-  attr_reader :console
+  attr_reader :console, :game_type
   def initialize(args={})
     @console = args[:console]
+    @game_type = args[:game_type]
   end
 
   def go(board=Board.new)
     @console.intro
-
-    @console.game_type
-    input = @console.get_input.capitalize
-    if input == "A"
-      game = one_player_game(board)
-    elsif input == "B"
-      puts 'in it'
-      game = two_player_game(board)
-    else 
-      puts "Sorry incorrect input"
-    end
-
-    game = two_player_game(board)
-
-    play(game)
+    get_game_type
+    play(@game_type)
     restart?
   end
 
-  # def get_game_type
-  #   @console.game_type
-  #   input = @console.get_input
-  #   if input == "A"
-  #     game = one_player_game
-  #   elsif input == "B"
-  #     game = two_player_game
-  #   end
-  # end
-
+  def get_game_type
+    input = @console.game_type
+    if input == "A"
+      @game_type = one_player_game
+    elsif input == "B"
+      @game_type = two_player_game
+    else 
+      @console.incorrect_input
+    end
+  end
 
   def play(game)
     game.tick while game.end == false

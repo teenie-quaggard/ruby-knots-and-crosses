@@ -7,7 +7,7 @@ RSpec.describe Console do
             output = StringIO.new 
             console = Console.new(:output => output, :input => StringIO.new)
             console.intro
-            expect(output.string).to eq("\nHowdy stranger. Welcome to Noughts and Crosses.\n")
+            expect(output.string).to eq("\nHowdy stranger. Welcome to Noughts and Crosses.")
         end
     end
 

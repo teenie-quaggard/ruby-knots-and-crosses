@@ -8,15 +8,16 @@ class Console
     end
 
     def get_input
-        @input.gets.chomp()
+        @input.gets.chomp
     end
 
     def intro
-        @output.puts "\nHowdy stranger. Welcome to Noughts and Crosses.\n"
+        @output.puts "\nHowdy stranger. Welcome to Noughts and Crosses."
     end
 
     def game_type
         @output.print "\nPress 'A' for one player or 'B' for two player: "
+        get_input.capitalize
     end
 
     def prompt_turn
@@ -29,6 +30,10 @@ class Console
 
     def bad_input
         @output.puts "Something was wrong with your input! Make sure it is an integer within the board limits."
+    end
+
+    def incorrect_input
+        @output.puts "Something was wrong with your input! Make sure it is 'A' or 'B'."
     end
 
     def winner(player)
@@ -45,7 +50,7 @@ class Console
 
     def outro
         @output.print "Would you like to play again? (Y/N): "
-        get_input().capitalize
+        get_input.capitalize
     end
 
     def bye
