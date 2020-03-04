@@ -14,13 +14,13 @@ RSpec.describe GameConstructor do
     expect(constructor.new_human_game(board, console)).to be_an_instance_of(Play)
   end
 
-  it '#play_game starts allows for one instance of game play' do 
+  it '#go ends game if player inputs "N" after game play' do 
     constructor = GameConstructor.new
     board = Board.new
     output = StringIO.new "\nHowdy stranger. Welcome to Noughts and Crosses.\n"
-    input = StringIO.new "1\n2\n5\n3\n9\n\N\n"
+    input = StringIO.new "1\n2\n5\n3\n9\nN\n"
     console = Console.new(:output => output, :input => input)
-    constructor.play_game(board, console)
+    constructor.go(board, console)
     expect(output.string).to include("Alright, see you next time! 👋")
   end
 
@@ -43,24 +43,6 @@ RSpec.describe GameConstructor do
 #     end
 # end
 
-
-  # it "within #game_loop play.game_over has returned true" do
-  #   allow($stdin).to receive(:gets).and_return("N")
-  #   puts $stdout.string
-  #   $stdout = StringIO.new
-  #   puts $stdout
-  #   constructor = GameConstructor.new(:tiles => {0=>"X", 1=>"X", 2=>"X", 3=>nil, 4=>nil, 5=>nil, 6=>nil, 7=>nil, 8=>nil})
-  #   constructor.game_loop
-  #   output = $stdout.string 
-  #   expect(output).to eq("Alright, see you next time! 👋")
-  # end
-
-  # it "within #game_loop play.game_over has returned true" do
-  #   constructor = GameConstructor.new(:tiles => {0=>"X", 1=>"X", 2=>"X", 3=>nil, 4=>nil, 5=>nil, 6=>nil, 7=>nil, 8=>nil})
-  #   constructor.game_loop
-  #   output = StringIO.new "Alright, see you next time! 👋"
-  #   expect(output).to eq("Alright, see you next time! 👋")
-  # end
 
 
 end

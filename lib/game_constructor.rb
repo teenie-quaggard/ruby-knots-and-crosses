@@ -5,9 +5,20 @@ require_relative 'player'
 
 class GameConstructor 
 
-  attr_accessor :play_again
-  def initialize(play_again = false)
-    @play_again = play_again
+  def go(board=Board.new, console=Console.new)
+    play = new_human_game(board, console)
+    play.tick
+    
+    if play.end
+      print "Would you like to play again? (Y/N): "
+      input = gets.chomp().capitalize
+      if (input == "N")
+          puts "Alright, see you next time! 👋"
+      else
+          go
+      end
+    end
+    
   end
 
   def new_human_game(board=Board.new, console=Console.new)
@@ -15,17 +26,6 @@ class GameConstructor
     Play.new(:console => console, :board => board, :players => players, :current_player => players[0])
   end
 
-  def play_game(board=nil, console=nil)
-    play = new_human_game(board, console)
-    play.tick
-  end
-
-  def program_loop (board=nil, console=nil)
-    play_again = false
-    # puts "\nHowdy stranger. Welcome to Noughts and Crosses.\n"
-    play_game(board, console)
-    puts "The End"
-  end
 
   # def game_loop
   #   game_play
