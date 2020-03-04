@@ -26,6 +26,7 @@ class Play
 
     def tick
         turn while (game_over == false)
+        @console.outro
     end
 
     def turn
