@@ -6,7 +6,7 @@ class Player
         @console = args[:console]
     end
 
-    def get_input (board)
+    def get_input(board)
         @console.print_board(board)
         @console.prompt_turn
         @console.get_input
