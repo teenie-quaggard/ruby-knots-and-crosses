@@ -17,14 +17,12 @@ class ComputerPlayer
       board.make_move(mark, input)
   end
 
-  def find_empty_tiles(board)
-    tiles = board.tiles
-    empty_tiles = {}
-    tiles.each { |key, value| 
-      if value == nil
-        empty_tiles[key] = value
-      }
-      end
-    empty_tiles
-  end
+  # def find_empty_tiles(board)
+  #   empty_tiles = {}
+  #   board.tiles.each { |key, value| 
+  #     empty_tiles[key] = value if value == nil
+  #   }
+  #   empty_tiles
+  # end
+
 end

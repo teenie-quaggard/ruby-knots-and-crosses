@@ -19,6 +19,15 @@ class Board
         @tiles[index] = mark
     end
 
+    def possible_moves
+        empty_tiles = {}
+        board.tiles.each { |key, value| 
+          empty_tiles[key] = value if value == nil
+        }
+        empty_tiles
+    end
+
+
     def validate(input)
         if spot_taken?(input)
             "Spot taken"
