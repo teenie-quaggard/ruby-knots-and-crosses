@@ -18,28 +18,22 @@ class Board
         Board.new
     end
 
-    def empty?
-        @tiles.all? {|key, value| value == nil}
+    def possible_moves
+        empty_tiles = {}
+        @tiles.each { |key, value| 
+          empty_tiles[key] = value if value == nil
+        }
+        empty_tiles
     end
 
-    def do_stuff(board)
-        board.make_move
-        board.winner? 
+    def empty?
+        @tiles.all? {|key, value| value == nil}
     end
 
     def make_move(mark, input)
         index = find_index(input)
         @tiles[index] = mark
     end
-
-    def possible_moves
-        empty_tiles = {}
-        board.tiles.each { |key, value| 
-          empty_tiles[key] = value if value == nil
-        }
-        empty_tiles
-    end
-
 
     def validate(input)
         if spot_taken?(input)

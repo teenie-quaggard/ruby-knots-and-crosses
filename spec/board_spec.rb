@@ -1,6 +1,22 @@
 require 'board'
 
 RSpec.describe Board do
+
+    it "can return the empty tiles of a board" do
+        board = Board.new
+        board.make_move("X", 1)
+        expect(board.possible_moves).to eq({
+            1 => nil,
+            2 => nil,
+            3 => nil,
+            4 => nil,
+            5 => nil,
+            6 => nil,
+            7 => nil,
+            8 => nil
+        })
+    end
+
     it 'can make an empty board' do
         board = Board.empty
         expect(board.empty?).to eq(true) 
@@ -25,21 +41,12 @@ RSpec.describe Board do
         expect(board.tile_content(1)).to eq("X")
     end
 
-
-    it "return the possible moves on the board" do 
-        empty_board = Board.new
-        full_board = B
-        
-        expect(empty_board.find_empty_tiles(empty_board))
-    end
-
     it '#tile_content returns data from a tile' do
         board = Board.new
         board.make_move("X", "1")
         expect(board.tile_content(1)).to eq ("X")
         expect(board.tile_content(2)).to eq (nil)
     end
-
 
     it '#bad_input? returns true if user inputs an integer that is within the range of the board' do
         board = Board.new

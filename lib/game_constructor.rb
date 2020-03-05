@@ -1,6 +1,7 @@
 require_relative 'play'
 require_relative 'board'
 require_relative 'player'
+require_relative 'computer_player'
 
 class GameConstructor 
   
@@ -42,9 +43,9 @@ class GameConstructor
     Play.new(:console => @console, :board => board, :players => players, :current_player => players[0])
   end
 
-  # def one_player_game(board=Board.new)
-  #   players = [Player.new(:mark => 'X'), ComputerPlayer.new(:mark => 'O')]
-  #   Play.new(:console => @console, :board => board, :players => players, :current_player => players[0])
-  # end
+  def one_player_game(board=Board.new)
+    players = [Player.new(:mark => 'X', :console => @console), ComputerPlayer.new(:mark => 'O')]
+    Play.new(:console => @console, :board => board, :players => players, :current_player => players[0])
+  end
 
 end
