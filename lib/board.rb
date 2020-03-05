@@ -12,6 +12,19 @@ class Board
             7 => nil,
             8 => nil
         }
+    end 
+
+    def self.empty
+        Board.new
+    end
+
+    def empty?
+        @tiles.all? {|key, value| value == nil}
+    end
+
+    def do_stuff(board)
+        board.make_move
+        board.winner? 
     end
 
     def make_move(mark, input)
