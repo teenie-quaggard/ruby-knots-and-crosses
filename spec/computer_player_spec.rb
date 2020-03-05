@@ -1,7 +1,7 @@
-require "computer_player"
+# require "computer_player"
 
-RSpec.describe ComputerPlayer do
+# RSpec.describe ComputerPlayer do
 
-  ""
+#   ""
 
-end
+# end
