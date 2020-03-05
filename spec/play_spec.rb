@@ -82,7 +82,7 @@ RSpec.describe Play do
         input = StringIO.new "2\n"
         output = StringIO.new
         console = Console.new(:input => input, :output => output)
-        players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
+        players = [Player.new(:mark => 'X', :console => console), Player.new(:mark => 'O', :console => console)]
         game = Play.new(:board => board, :console => console, :players => players, :current_player => players[0])
         game.turn
         expect(board.tile_content(input.string)).to eq("X")

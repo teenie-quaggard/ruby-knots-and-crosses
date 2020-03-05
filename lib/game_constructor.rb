@@ -38,7 +38,7 @@ class GameConstructor
   end
 
   def two_player_game(board=Board.new)
-    players = [Player.new(:mark => 'X'), Player.new(:mark => 'O')]
+    players = [Player.new(:mark => 'X', :console => @console), Player.new(:mark => 'O', :console => @console)]
     Play.new(:console => @console, :board => board, :players => players, :current_player => players[0])
   end
 

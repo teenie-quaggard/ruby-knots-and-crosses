@@ -20,7 +20,7 @@ RSpec.describe GameConstructor do
 
   it '#go ends game if player inputs "N" after game play' do 
     output = StringIO.new
-    input = StringIO.new "1\n2\n5\n3\n9\nN\n"
+    input = StringIO.new "b\n1\n2\n5\n3\n9\nN\n"
     console = Console.new(:output => output, :input => input)
     constructor = GameConstructor.new(:console => console)
     board = Board.new
