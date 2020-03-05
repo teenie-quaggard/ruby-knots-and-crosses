@@ -10,18 +10,13 @@ class Play
         [2,4,6]
     ]
 
-    attr_reader :board, :console, :players, :current_player
+    attr_reader :board, :console, :players, :current_player, :end
     def initialize(args)
         @board = args[:board] 
         @players = args[:players]
         @current_player = args[:current_player]
         @console = args[:console]
-    end
-
-    def start
-        @console.intro
-        tick
-        @console.outro
+        @end = args[:end] || false
     end
 
     def tick
@@ -60,12 +55,12 @@ class Play
     def game_over
         if (winner(@board, @current_player.mark) == true )
             @console.winner(@current_player.mark)
-            return true
+            @end = true
         elsif (tie(@board) == true)
             @console.tie
-            return true
+            @end = true
         else
-            false
+            @end = false
         end
     end
 
@@ -86,5 +81,9 @@ class Play
     def toggle_player
         @current_player == @players[0] ? @current_player = @players[1] : @current_player = @players[0]
     end 
+
+    def toggle_end
+        @end = !@end
+    end
 
 end
