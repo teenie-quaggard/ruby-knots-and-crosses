@@ -12,6 +12,22 @@ class Board
             7 => nil,
             8 => nil
         }
+    end 
+
+    def self.empty
+        Board.new
+    end
+
+    def possible_moves
+        empty_tiles = {}
+        @tiles.each { |key, value| 
+          empty_tiles[key] = value if value == nil
+        }
+        empty_tiles
+    end
+
+    def empty?
+        @tiles.all? {|key, value| value == nil}
     end
 
     def make_move(mark, input)

@@ -24,19 +24,14 @@ class Play
     end
 
     def turn
-        input = get_input
+        open_tiles = @board.possible_moves
+        input = @current_player.get_input(@board, open_tiles)
         if valid_move?(input)
             @current_player.make_move(@board, @current_player.mark, input)
             game_over ? @console.print_board(@board) : toggle_player
         else
             turn
         end
-    end
-
-    def get_input 
-        @console.print_board(@board)
-        @console.prompt_turn
-        user_input = @console.get_input
     end
 
     def valid_move?(input)
