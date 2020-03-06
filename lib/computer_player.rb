@@ -17,7 +17,7 @@ class ComputerPlayer
     arr = convert_hash_to_array(open_tiles)
     number_of_potential_moves = arr.length
     index = random_index(number_of_potential_moves)
-    arr[index][0]
+    arr[index][0] + 1
   end
 
   def convert_hash_to_array(open_tiles)
